@@ -371,14 +371,42 @@ def base_doc(title, subtitle=None, landscape=False):
     return doc
 
 
+def is_empty_paragraph_element(element):
+    if element.tag != qn("w:p"):
+        return False
+    for text in element.iter(qn("w:t")):
+        if text.text and text.text.strip():
+            return False
+    for tag in ("w:drawing", "w:pict", "w:br"):
+        if list(element.iter(qn(tag))):
+            return False
+    return True
+
+
+def remove_trailing_empty_paragraphs(doc):
+    body = doc._body._element
+    children = list(body)
+    idx = len(children) - 1
+    if idx >= 0 and children[idx].tag == qn("w:sectPr"):
+        idx -= 1
+    while idx >= 0 and is_empty_paragraph_element(children[idx]):
+        body.remove(children[idx])
+        idx -= 1
+
+
 def save_doc(doc, filename):
     path = OUT / filename
+    remove_trailing_empty_paragraphs(doc)
     doc.save(path)
     return path
 
 
 def build_images():
     IMG_DIR.mkdir(parents=True, exist_ok=True)
+    expected = [IMG_DIR / f"bilde_{idx}_farrisbrua.png" for idx in range(1, 5)]
+    if all(path.exists() for path in expected):
+        return expected
+
     font = ImageFont.load_default()
     title_font = ImageFont.load_default()
     images = []
@@ -541,7 +569,7 @@ def build_ressursplan():
     return save_doc(doc, "02_Ressursplan_B43_Farrisbrua.docx")
 
 
-def build_innringer_spillkort():
+def build_innringer_spillkort(images):
     doc = base_doc("Innringerplan og spillkort", SCENARIO["subtitle"])
     doc.add_heading("1. Innringerplan", level=1)
     add_table(doc, ["Nr.", "Tid", "Rolle", "Kanal", "Hovedfunksjon"], [
@@ -560,7 +588,27 @@ def build_innringer_spillkort():
             ["Avslutning", c["avslutning"]],
             ["Forventet 110-håndtering", c["forventet"]],
         ])
-    doc.add_heading("2. Spillkort for øvrige motspillere", level=1)
+
+    doc.add_heading("2. Felles bildegrunnlag for spillkort", level=1)
+    doc.add_paragraph(
+        "Disse bildene er felles visuell referanse for innringere, motspillere og spillstab. "
+        "De skal bidra til at alle beskriver samme hendelse. Bildene skal ikke vises samlet til de øvende ved start."
+    )
+    add_table(doc, ["Bilde", "Brukes av", "Tidspunkt", "Hva bildet skal støtte"], [
+        ["Bilde 1", "Melder 1 / spillstab", "0-8 min", "Initial oversikt, røyk, kjøretøyplassering og trafikkstans."],
+        ["Bilde 2", "Melder 1 / UL / AMK-politi ved avklaring", "15-22 min", "Nærmere skadepunkt, røykutvikling og personbil mot militært kjøretøy."],
+        ["Bilde 3", "VTS / politi / spillstab", "35-45 min", "Kø, blokkert kjørebane og fremkommelighet."],
+        ["Bilde 4", "UL / IL / AMK / politi", "22-35 min eller driftsfase", "Første ressurser fremme og arbeid med uthenting/frigjøring."],
+    ])
+    doc.add_page_break()
+    for i, img in enumerate(images, 1):
+        if i > 1:
+            doc.add_page_break()
+        doc.add_heading(f"Bilde {i} - felles referanse", level=2)
+        doc.add_picture(str(img), width=Inches(5.9))
+        doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+    doc.add_heading("3. Spillkort for øvrige motspillere", level=1)
     for s in SPILLCARDS:
         doc.add_heading(s["rolle"], level=2)
         add_table(doc, ["Felt", "Innhold"], [
@@ -713,7 +761,7 @@ def build_bilde_doc(images):
     doc = base_doc("Bildepakke og situasjonskort", SCENARIO["subtitle"])
     doc.add_heading("1. Bruk av bilder", level=1)
     doc.add_paragraph(
-        "Bildene er fiktive situasjonsskisser som skal støtte situasjonsforståelse. Hvert Situasjonsbilde skal gis på riktig tidspunkt i dreieboken og ikke deles samlet med de øvende ved start."
+        "Bildene er fiktive, fotorealistiske situasjonsbilder som skal støtte situasjonsforståelse. Hvert Situasjonsbilde skal gis på riktig tidspunkt i dreieboken og ikke deles samlet med de øvende ved start. Samme bildegrunnlag brukes i spillkortene, slik at innringere, motspillere og spillstab beskriver samme hendelse."
     )
     rows = [
         ["Bilde 1", "10-15 min", "Melder/politi", "Oversikt over ulykkespunkt og retning. Brukes hvis de øvende trenger visuell støtte."],
@@ -723,6 +771,7 @@ def build_bilde_doc(images):
     ]
     add_table(doc, ["Bilde", "Tidspunkt", "Gis av", "Hensikt"], rows)
     for i, img in enumerate(images, 1):
+        doc.add_page_break()
         doc.add_heading(f"Bilde {i}", level=2)
         doc.add_picture(str(img), width=Inches(6.4))
         doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -791,7 +840,7 @@ def main():
     paths = [
         build_ovelsesbeskrivelse(),
         build_ressursplan(),
-        build_innringer_spillkort(),
+        build_innringer_spillkort(images),
         build_dreiebok(),
         build_sikkerhet(),
         build_evaluering(),

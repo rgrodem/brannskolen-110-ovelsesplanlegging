@@ -73,6 +73,10 @@ def main():
         lines.append(f"- {status}: `{r['doc']}` - {r['pages']} renderede sider")
     lines.append("")
     lines.append("Merknad: artifact-tool returnerte exitkode 1 uten stderr, men produserte PNG-sider for alle DOCX-dokumenter.")
+    docx_contact = OUT / "qa" / "rendered_docx_all_pages_contactsheet.png"
+    if docx_contact.exists():
+        rel = str(docx_contact.relative_to(ROOT)).replace("\\", "/")
+        lines.append(f"- Visuelt DOCX-kontaktark: `{rel}`")
 
     lines.extend(["", "## Bildekontroll", ""])
     for i in images:

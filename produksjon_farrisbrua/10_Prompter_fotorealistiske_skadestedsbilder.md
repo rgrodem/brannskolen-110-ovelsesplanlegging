@@ -156,6 +156,48 @@ Foreslått eksportnavn:
 
 - `video_1_farrisbrua_incidentshare_15sek.mp4`
 
+## Videoprompt 2 - 15 sekunder avstandsvideo etter at første ressurser er fremme
+
+Bruk denne til en senere situasjonsvideo der innringer eller observatør filmer fra trygg avstand etter at brann og ambulanse er kommet frem. Videoen skal vise arbeid med frigjøring/uthenting av fører uten å vise pasient tett på.
+
+```text
+Create a 15-second photorealistic handheld vertical smartphone video from the perspective of a civilian observer filming from a safe distance for the Norwegian 110 emergency dispatch centre through a secure incident video-sharing link, similar to IncidentShare. The video should look like authentic field footage captured on a modern phone, not a cinematic rescue scene.
+
+Location and continuity:
+E18 Farrisbrua near Larvik, Norway. Modern motorway bridge over water and forested terrain, overcast Nordic daylight, damp asphalt, realistic muted colors. Same fictional incident as the still-image series: a red civilian passenger car has collided with or struck the rear/side of a dark green military logistics truck. Light residual grey smoke is still visible near the red car's engine compartment. Traffic is stopped and controlled behind the incident.
+
+Situation:
+Fire and ambulance have arrived. A generic red fire engine without readable logos is parked behind the damaged red car to protect the scene. A generic white ambulance without readable logos is positioned slightly farther back. Firefighters in high-visibility protective clothing are working at the driver's side of the red car, preparing or carrying out a controlled extrication of the driver. Ambulance personnel are nearby with a stretcher or medical bag, waiting for safe access. The driver is not clearly visible; the patient area is partly blocked by responders, the car frame and open doors. No graphic injury is shown.
+
+Camera style:
+Handheld 9:16 smartphone video, filmed from approximately 40-70 meters away behind stopped vehicles or from a safe shoulder position. Slight natural hand shake, realistic phone autofocus and exposure changes. The camera operator does not walk into the working area and does not interfere with responders. The framing should show the overall scene: bridge, blocked lanes, emergency vehicle placement, smoke, responders and the damaged vehicles.
+
+Timeline:
+0-3 seconds: The camera starts from behind the traffic queue or a safe roadside position. Fire engine, ambulance and stopped traffic are visible in the distance.
+3-7 seconds: The camera slowly zooms or steps slightly forward while staying at a safe distance. The red car, dark green military logistics truck and responders working at the driver's side become clearer.
+7-11 seconds: The camera holds steady and pans slightly across the scene, showing firefighters working around the driver's door area and ambulance personnel staged nearby with stretcher or equipment.
+11-15 seconds: The camera settles on a wider overview showing vehicle positions, blocked lanes, emergency resources, light smoke and calm controlled rescue work. The final view should give 110 useful situational awareness without showing close-up patient details.
+
+Operational realism:
+The scene should communicate that the incident has moved from initial response into an organized rescue phase. Show calm, coordinated work, protected work area, stopped traffic and limited access on the bridge. No panic, no dramatic running, no explosion, no weapons, no ammunition. The video should be useful for a 110 operator to understand that first resources are on scene, extrication is underway and traffic remains blocked.
+
+Safety and privacy constraints:
+No gore, no blood, no dead bodies, no visible severe injuries, no identifiable faces, no readable license plates, no real emergency service logos, no military insignia, no brand logos, no on-screen text, no subtitles, no watermark. Do not show close-up views of the patient. Do not show the person filming entering the hazard zone or standing between emergency vehicles.
+
+Visual quality:
+Photorealistic documentary realism, natural Nordic daylight, real-world physics, realistic vehicle damage, realistic smoke behavior, realistic emergency service posture, no cinematic color grading, no dramatic rescue-movie lighting, no CGI look, no cartoon style, no drone movement.
+```
+
+Negativ prompt for video 2:
+
+```text
+gore, blood, dead body, severe injury close-up, identifiable patient, identifiable face, readable license plate, real logos, military insignia, weapons, ammunition, explosion, fireball, terrorism, war scene, panic crowd, dramatic rescue movie, police chase, helicopter, night, storm, snow, cinematic shot, drone shot, perfectly smooth camera, action movie, news overlay, subtitles, text, watermark, blurry low quality, cartoon, CGI, toy-like vehicles, unrealistic bridge geometry, unsafe camera position
+```
+
+Foreslått eksportnavn:
+
+- `video_2_farrisbrua_ressurser_fremme_15sek.mp4`
+
 ## Filnavn ved eksport
 
 Bruk disse filnavnene når bildene eksporteres og legges inn i øvelsespakken:

@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Strategi for øvelsesplanlegging - 110-sentral</title>
+  <style>
+    :root {
+      --ink: #1d252c;
+      --muted: #5f6b76;
+      --line: #d7dde4;
+      --paper: #f7f8fa;
+      --panel: #ffffff;
+      --accent: #c7362f;
+      --accent-dark: #8f211d;
+      --blue: #1f5f8b;
+      --green: #28724f;
+      --amber: #9a6b12;
+      --shadow: 0 10px 28px rgba(20, 35, 50, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    header {
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(109, 27, 24, 0.94), rgba(31, 95, 139, 0.9)),
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.10) 0 2px, transparent 2px 18px);
+      padding: 34px 44px 30px;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 24px 48px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.15;
+    }
+
+    h1 {
+      max-width: 980px;
+      font-size: 34px;
+      font-weight: 750;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: 23px;
+    }
+
+    h3 {
+      font-size: 17px;
+    }
+
+    p {
+      margin: 8px 0 0;
+    }
+
+    .lead {
+      max-width: 900px;
+      margin-top: 14px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 17px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .meta span {
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      border-radius: 4px;
+      padding: 7px 10px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .panel {
+      grid-column: span 12;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .half {
+      grid-column: span 6;
+    }
+
+    .third {
+      grid-column: span 4;
+    }
+
+    .two-third {
+      grid-column: span 8;
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .status {
+      border-left: 5px solid var(--line);
+      border-radius: 6px;
+      background: #fafbfc;
+      padding: 14px 14px 13px;
+      min-height: 112px;
+    }
+
+    .status strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 15px;
+    }
+
+    .status p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .status.red {
+      border-color: var(--accent);
+    }
+
+    .status.blue {
+      border-color: var(--blue);
+    }
+
+    .status.green {
+      border-color: var(--green);
+    }
+
+    .status.amber {
+      border-color: var(--amber);
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: 16px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 15px;
+    }
+
+    .time {
+      color: var(--accent-dark);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .step ul,
+    .deliverables ul,
+    .checks ul,
+    .risks ul {
+      margin: 10px 0 0;
+      padding-left: 21px;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+
+    .deliverables {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .deliverable {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fbfcfd;
+      min-height: 148px;
+    }
+
+    .tag {
+      display: inline-block;
+      border-radius: 4px;
+      padding: 4px 7px;
+      color: #fff;
+      background: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .tag.red {
+      background: var(--accent);
+    }
+
+    .tag.green {
+      background: var(--green);
+    }
+
+    .tag.amber {
+      background: var(--amber);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 11px 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      color: #fff;
+      background: #334653;
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .callout {
+      border-left: 5px solid var(--accent);
+      border-radius: 6px;
+      background: #fff8f7;
+      padding: 14px 16px;
+    }
+
+    .phase-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .dot.blue {
+      background: var(--blue);
+    }
+
+    .dot.green {
+      background: var(--green);
+    }
+
+    .dot.amber {
+      background: var(--amber);
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 860px) {
+      header {
+        padding: 28px 22px;
+      }
+
+      main {
+        padding: 20px 14px 36px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .half,
+      .third,
+      .two-third {
+        grid-column: span 12;
+      }
+
+      .status-row,
+      .deliverables {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Strategi for øvelsesplanlegging: 110-sentral</h1>
+    <p class="lead">
+      Produksjonskart for 1,5 dag med planlegging, gjennomføring og evaluering av en spilløvelse for ett vaktlag.
+      Selve 90-minutters hendelsesforløp fylles inn etter at mål, rammer og evalueringskriterier er låst.
+    </p>
+    <div class="meta" aria-label="Rammer">
+      <span>Dato: 4.-5. mai 2026</span>
+      <span>Øvingsform: Spilløvelse</span>
+      <span>Action time: ca. 90 minutter</span>
+      <span>Ramme: full kontrollromsetting</span>
+      <span>Kursmål: 2.2.12 Øvelsesplanlegging og evaluering</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid" aria-label="Målbilde">
+      <article class="panel two-third">
+        <h2>Sluttleveranse</h2>
+        <p>
+          Ved slutten av utviklingsperioden skal gruppen ha en komplett og gjennomførbar øvelsespakke som kan brukes
+          av en annen gruppe til å øve ett vaktlag i 110-sentralen.
+        </p>
+        <div class="status-row">
+          <div class="status red">
+            <strong>1. Øvelsesbeskrivelse</strong>
+            <p>Hensikt, mål, målgruppe, metode, rammer, ansvar, utstyr og etterarbeid.</p>
+          </div>
+          <div class="status blue">
+            <strong>2. Dreiebok og spillkort</strong>
+            <p>Tidslinje, motspill, hendelser, forventet reaksjon og observasjonspunkter.</p>
+          </div>
+          <div class="status amber">
+            <strong>3. Evaluering</strong>
+            <p>ODCR/observasjonsskjema, AAR-opplegg, kriterier og læringspunkter.</p>
+          </div>
+          <div class="status green">
+            <strong>4. Presentasjon</strong>
+            <p>Kort briefing før øvelse og strukturert gjennomgang/evaluering etterpå.</p>
+          </div>
+        </div>
+      </article>
+
+      <aside class="panel third">
+        <h2>Arbeidsprinsipp</h2>
+        <div class="callout">
+          <strong>Mål først, scenario etterpå.</strong>
+          <p>Scenarioet skal teste målene, ikke omvendt. Først låses hensikt, delmål og indikatorer. Deretter bygges 90-minutters innhold.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid" aria-label="Hva skal produseres i dag">
+      <article class="panel">
+        <h2>Hva vi skal produsere i dag</h2>
+        <div class="deliverables">
+          <div class="deliverable">
+            <span class="tag red">Må være ferdig</span>
+            <h3>1. Hovedramme for øvelsen</h3>
+            <ul>
+              <li>Øvingsform: spilløvelse i kontrollrom.</li>
+              <li>Hvem øves: ett vaktlag på 110-sentral.</li>
+              <li>Hvem spiller motspill: AMK, politi, melder, IL, UL, media og andre relevante roller.</li>
+              <li>Avgrensning: selve hendelsesdetaljene fylles senere.</li>
+            </ul>
+          </div>
+
+          <div class="deliverable">
+            <span class="tag red">Må være ferdig</span>
+            <h3>2. Hensikt, hovedmål og delmål</h3>
+            <ul>
+              <li>Kursmål 2.2.12 kobles til planleggingsarbeidet.</li>
+              <li>Øvingsmål for vaktlaget defineres separat.</li>
+              <li>Hvert delmål får minst én observerbar indikator.</li>
+            </ul>
+          </div>
+
+          <div class="deliverable">
+            <span class="tag blue">Skal utkastes</span>
+            <h3>3. Dokumentstruktur</h3>
+            <ul>
+              <li>Øvelsesbeskrivelse.</li>
+              <li>Dreiebok.</li>
+              <li>Spillkort/motspillkort.</li>
+              <li>Sikkerhetsinstruks.</li>
+              <li>Evalueringsskjema og AAR-opplegg.</li>
+            </ul>
+          </div>
+
+          <div class="deliverable">
+            <span class="tag blue">Skal utkastes</span>
+            <h3>4. Evalueringsdesign</h3>
+            <ul>
+              <li>Hvem observerer hva.</li>
+              <li>Hvordan observasjon dokumenteres.</li>
+              <li>Hvordan AAR gjennomføres etter øvelsen.</li>
+              <li>Hvordan læringspunkter formuleres og følges opp.</li>
+            </ul>
+          </div>
+
+          <div class="deliverable">
+            <span class="tag amber">Avklares</span>
+            <h3>5. Scenario- og fagvalg</h3>
+            <ul>
+              <li>Velg hendelsestype som tester målene.</li>
+              <li>Avklar om scenario skal vekte trippelvarsling, ELS, kart, samband, kontrollspenn eller samvirke.</li>
+              <li>Bestem realismens nivå: enkel, middels eller krevende.</li>
+            </ul>
+          </div>
+
+          <div class="deliverable">
+            <span class="tag green">Forberedes</span>
+            <h3>6. Presentasjonsopplegg</h3>
+            <ul>
+              <li>5-8 slides til før-brief.</li>
+              <li>3-5 slides til ettergjennomgang.</li>
+              <li>Én slide med mål og én slide med evalueringsspørsmål.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid" aria-label="Tidsplan">
+      <article class="panel half">
+        <h2>Dag 1: utvikle grunnpakken</h2>
+        <div class="timeline">
+          <div class="step">
+            <div class="time">Start</div>
+            <div>
+              <div class="phase-title"><span class="dot"></span><h3>Felles forståelse</h3></div>
+              <p>Les kursmål, tilgjengelige maler og krav til dokumentasjon. Enes om at øvelsen bygges som spilløvelse.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="time">Arbeidsøkt 1</div>
+            <div>
+              <div class="phase-title"><span class="dot blue"></span><h3>Mål og indikatorer</h3></div>
+              <p>Lag hovedmål, delmål og evaluerbare indikatorer. Dette styrer alt videre arbeid.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="time">Arbeidsøkt 2</div>
+            <div>
+              <div class="phase-title"><span class="dot amber"></span><h3>Scenario-ramme</h3></div>
+              <p>Velg hendelsestype og grov utvikling uten å skrive hele 90-minutters hendelsesforløpet.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="time">Arbeidsøkt 3</div>
+            <div>
+              <div class="phase-title"><span class="dot green"></span><h3>Dokumentmaler</h3></div>
+              <p>Fyll struktur i øvelsesbeskrivelse, dreiebok, sikkerhetsinstruks og evalueringsskjema.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="time">Slutt dag 1</div>
+            <div>
+              <div class="phase-title"><span class="dot"></span><h3>Kvalitetssjekk</h3></div>
+              <p>Kontroller at alle dokumenter henger sammen: mål, scenario, spillkort, observasjon og AAR.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel half">
+        <h2>Dag 2: ferdigstille og øve gjennomføring</h2>
+        <div class="timeline">
+          <div class="step">
+            <div class="time">Start</div>
+            <div>
+              <div class="phase-title"><span class="dot blue"></span><h3>90-minutters innhold</h3></div>
+              <p>Fyll inn konkret dreiebok med tidslinje, innspill, roller, kanaler og forventede handlinger.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="time">Midtveis</div>
+            <div>
+              <div class="phase-title"><span class="dot amber"></span><h3>Motspill og sikkerhet</h3></div>
+              <p>Gi hver markør tydelig rolle, manus, telefonnummer/kanal, stoppregel og rammer for improvisasjon.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="time">Før lunsj</div>
+            <div>
+              <div class="phase-title"><span class="dot green"></span><h3>Presentasjon</h3></div>
+              <p>Ferdigstill briefing, evalueringsopplegg og kort oppsummeringsmal for læringspunkter.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="time">Avslutning</div>
+            <div>
+              <div class="phase-title"><span class="dot"></span><h3>Generalprøve</h3></div>
+              <p>Gå gjennom øvelsen minutt for minutt med spillstab og observatører. Juster hull og uklarheter.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid" aria-label="Dokumenter">
+      <article class="panel">
+        <h2>Dokumenter som skal bygges</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Dokument</th>
+              <th>Funksjon</th>
+              <th>Status i dag</th>
+              <th>Ferdig når</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Øvelsesbeskrivelse</td>
+              <td>Samler hensikt, mål, rammer, metode, målgruppe, utstyr, ansvar og etterarbeid.</td>
+              <td>Struktur og tekstutkast.</td>
+              <td>Alle rammer er forståelige for en ekstern gruppe.</td>
+            </tr>
+            <tr>
+              <td>Dreiebok</td>
+              <td>Styrer de 90 minuttene med klokkeslett, innspill, aktør, kanal og forventet handling.</td>
+              <td>Kolonner og hovedfaser klargjøres.</td>
+              <td>Hver hendelse tester minst ett delmål.</td>
+            </tr>
+            <tr>
+              <td>Spillkort</td>
+              <td>Gir markører manus og forventet respons for melder, AMK, politi, IL, UL, media m.fl.</td>
+              <td>Mal og rolleoversikt lages.</td>
+              <td>Alle motspillere kan spille rollen uten ekstra forklaring.</td>
+            </tr>
+            <tr>
+              <td>Sikkerhetsinstruks</td>
+              <td>Avklarer HMS, reell beredskap, stoppregel, teknisk bruk og risiko for misforståelse.</td>
+              <td>Risikoer og tiltak listes.</td>
+              <td>Alle vet når og hvordan øvelsen kan stoppes.</td>
+            </tr>
+            <tr>
+              <td>Evalueringsskjema</td>
+              <td>Kobler observasjoner til mål, indikatorer, refleksjon, konklusjon og anbefaling.</td>
+              <td>ODCR og AAR tilpasses.</td>
+              <td>Observatørene vet nøyaktig hva de skal se etter.</td>
+            </tr>
+            <tr>
+              <td>Presentasjon</td>
+              <td>Gir før-brief, spilleregler og ettergjennomgang/evaluering.</td>
+              <td>Disposisjon lages.</td>
+              <td>Kan brukes direkte før og etter øvelsen.</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <section class="grid" aria-label="Avklaringer og kvalitet">
+      <article class="panel half checks">
+        <h2>Avklaringer før 90-minutters innhold skrives</h2>
+        <ul>
+          <li>Hvilke 110-ferdigheter skal vaktlaget faktisk testes i?</li>
+          <li>Hvor mange operatører og hvilken vaktlederfunksjon skal være i spill?</li>
+          <li>Hvilke tekniske systemer kan brukes i øvelsen, og hva må simuleres?</li>
+          <li>Hvilke kanaler skal markører bruke: telefon, Nødnett, papir, e-post eller muntlig innspill?</li>
+          <li>Hvor krevende skal øvelsen være: normal, presset eller eskalerende kontrollspenn?</li>
+        </ul>
+      </article>
+
+      <article class="panel half risks">
+        <h2>Kvalitetskrav</h2>
+        <ul>
+          <li>Alt innhold skal henge sammen med kursmål 2.2.12 og øvingsmålene for vaktlaget.</li>
+          <li>Hvert spillinnspill skal ha en tydelig hensikt.</li>
+          <li>Evalueringen skal kunne gjennomføres rett etter øvelsen.</li>
+          <li>Dokumentene skal kunne brukes av en annen gruppe uten muntlig spesialforklaring.</li>
+          <li>Øvelsen skal være realistisk nok til læring, men avgrenset nok til 90 minutter.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="grid" aria-label="Suksesskriterier">
+      <article class="panel">
+        <h2>Ferdig produkt etter 1,5 dag</h2>
+        <p>
+          En ferdig øvelsespakke består av utfylt øvelsesbeskrivelse, sikkerhetsinstruks, dreiebok, spillkort,
+          evalueringsskjema, AAR-plan og presentasjon. Når dette er på plass kan øvelsen gjennomføres, observeres
+          og evalueres systematisk.
+        </p>
+        <p class="footer-note">
+          Denne oversikten er laget som arbeidsdokument. Den kan oppdateres etter hvert som scenario og 90-minutters
+          hendelsesforløp bestemmes.
+        </p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

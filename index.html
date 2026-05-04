@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>B43 Farrisbrua - øvelsespakke</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172026;
+      --muted: #5b6670;
+      --line: #d8dee4;
+      --paper: #f6f7f8;
+      --panel: #ffffff;
+      --accent: #b42318;
+      --accent-dark: #7f1d1d;
+      --teal: #0f766e;
+      --steel: #334155;
+      --amber: #b45309;
+      --shadow: 0 14px 36px rgba(23, 32, 38, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .topbar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .topbar-inner,
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 220px;
+    }
+
+    .brand strong {
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    nav a,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #ffffff;
+      text-decoration: none;
+      color: var(--steel);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover,
+    .button:hover {
+      border-color: #aeb7c2;
+      background: #f9fafb;
+    }
+
+    .hero {
+      padding: 34px 0 24px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .intro {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 26px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.08;
+      letter-spacing: 0;
+      margin-bottom: 14px;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 17px;
+      margin-bottom: 20px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .meta li {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f8fafc;
+      color: var(--steel);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .quick {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .quick a {
+      min-height: 52px;
+      justify-content: flex-start;
+      gap: 10px;
+      border-color: transparent;
+      box-shadow: 0 1px 0 rgba(23, 32, 38, 0.05);
+    }
+
+    .quick a.primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .quick a.primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .quick .mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: inline-grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.22);
+      font-weight: 800;
+    }
+
+    .section {
+      padding: 18px 0 34px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: 23px;
+      letter-spacing: 0;
+      margin-bottom: 4px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      margin-bottom: 0;
+      max-width: 720px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .doc {
+      display: flex;
+      flex-direction: column;
+      min-height: 146px;
+      padding: 16px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 1px 0 rgba(23, 32, 38, 0.04);
+    }
+
+    .doc:hover {
+      border-color: #9aa6b2;
+      box-shadow: 0 10px 22px rgba(23, 32, 38, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .doc-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: #eef2f7;
+      color: var(--steel);
+      font-size: 12px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .badge.docx {
+      background: #e8f1ff;
+      color: #1d4ed8;
+    }
+
+    .badge.pptx {
+      background: #fff1e6;
+      color: #b45309;
+    }
+
+    .badge.md {
+      background: #ecfdf5;
+      color: #047857;
+    }
+
+    .badge.pdf {
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    .doc h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .doc p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .doc span.open {
+      margin-top: auto;
+      color: var(--accent);
+      font-weight: 750;
+      font-size: 14px;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    figure {
+      margin: 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #e5e7eb;
+    }
+
+    figcaption {
+      padding: 10px 12px 12px;
+      color: var(--steel);
+      font-weight: 650;
+      font-size: 13px;
+    }
+
+    .status {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .status-item {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .status-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--teal);
+      font-size: 15px;
+    }
+
+    .status-item span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer {
+      margin-top: 26px;
+      padding: 28px 0 42px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 0;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      .hero-grid,
+      .grid,
+      .status {
+        grid-template-columns: 1fr;
+      }
+
+      .media-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .topbar-inner,
+      main {
+        width: min(100% - 22px, 1180px);
+      }
+
+      .intro {
+        padding: 20px;
+      }
+
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <strong>B43 Farrisbrua</strong>
+        <span>Øvelsespakke for 110-sentral</span>
+      </div>
+      <nav aria-label="Dokumentgrupper">
+        <a href="#produksjon">Produksjon</a>
+        <a href="#bilder">Bilder og video</a>
+        <a href="#grunnlag">Grunnlag</a>
+        <a href="https://github.com/rgrodem/brannskolen-110-ovelsesplanlegging">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="intro">
+          <h1>B43 Farrisbrua - samlet øvelsespakke</h1>
+          <p class="lead">Arbeidsversjon for realistisk 90 minutters 110-øvelse i kontrollrom med ett vaktlag, trippelvarsling, innringerspill, motspill og systematisk evaluering.</p>
+          <ul class="meta" aria-label="Nøkkeldata">
+            <li>Stavern</li>
+            <li>B43 øvelsessentral</li>
+            <li>3 OP + 1 VL</li>
+            <li>E18 Farrisbrua, Larvik</li>
+            <li>Totalforsvarskontekst</li>
+          </ul>
+        </div>
+
+        <div class="quick" aria-label="Hurtigvalg">
+          <a class="button primary" href="produksjon_farrisbrua/07_Presentasjon_B43_Farrisbrua.pptx"><span class="mark">P</span>Åpne presentasjon</a>
+          <a class="button" href="produksjon_farrisbrua/04_Dreiebok_B43_Farrisbrua.docx"><span class="mark" style="background:#e8f1ff;color:#1d4ed8;">D</span>Åpne dreiebok</a>
+          <a class="button" href="produksjon_farrisbrua/03_Innringerplan_og_spillkort_B43_Farrisbrua.docx"><span class="mark" style="background:#ecfdf5;color:#047857;">I</span>Åpne innringerplan</a>
+          <a class="button" href="produksjon_farrisbrua/10_Prompter_fotorealistiske_skadestedsbilder.md"><span class="mark" style="background:#fff1e6;color:#b45309;">V</span>Bilde- og videoprompter</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="status" aria-label="Status">
+        <div class="status-item">
+          <strong>Produksjonspakke</strong>
+          <span>Utkast klart for gruppegjennomgang.</span>
+        </div>
+        <div class="status-item">
+          <strong>Scenario</strong>
+          <span>Realistisk trafikkhendelse med totalforsvarskontekst.</span>
+        </div>
+        <div class="status-item">
+          <strong>Evaluering</strong>
+          <span>ODCR/AAR-opplegg følger leveransen.</span>
+        </div>
+        <div class="status-item">
+          <strong>Medier</strong>
+          <span>Skisser, situasjonskort og prompter ligger klare.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="produksjon">
+      <div class="section-head">
+        <div>
+          <h2>Produksjonsdokumenter</h2>
+          <p>Dokumentene som samlet utgjør øvelsespakken for B43 Farrisbrua.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <a class="doc" href="produksjon_farrisbrua/01_Ovelsesbeskrivelse_B43_Farrisbrua.docx">
+          <div class="doc-top"><span class="badge docx">DOCX</span><span>01</span></div>
+          <h3>Øvelsesbeskrivelse</h3>
+          <p>Ramme, hensikt, mål, scenario og gjennomføringsform.</p>
+          <span class="open">Åpne dokument</span>
+        </a>
+
+        <a class="doc" href="produksjon_farrisbrua/02_Ressursplan_B43_Farrisbrua.docx">
+          <div class="doc-top"><span class="badge docx">DOCX</span><span>02</span></div>
+          <h3>Ressursplan</h3>
+          <p>Roller, markører, motspill og kontrollromsoppsett.</p>
+          <span class="open">Åpne dokument</span>
+        </a>
+
+        <a class="doc" href="produksjon_farrisbrua/03_Innringerplan_og_spillkort_B43_Farrisbrua.docx">
+          <div class="doc-top"><span class="badge docx">DOCX</span><span>03</span></div>
+          <h3>Innringerplan og spillkort</h3>
+          <p>Tre initiale innringere, trippelvarsling og korte meldinger.</p>
+          <span class="open">Åpne dokument</span>
+        </a>
+
+        <a class="doc" href="produksjon_farrisbrua/04_Dreiebok_B43_Farrisbrua.docx">
+          <div class="doc-top"><span class="badge docx">DOCX</span><span>04</span></div>
+          <h3>Dreiebok</h3>
+          <p>Tidslinje, forventede handlinger, motspill og styringspunkter.</p>
+          <span class="open">Åpne dokument</span>
+        </a>
+
+        <a class="doc" href="produksjon_farrisbrua/05_Sikkerhetsinstruks_B43_Farrisbrua.docx">
+          <div class="doc-top"><span class="badge docx">DOCX</span><span>05</span></div>
+          <h3>Sikkerhetsinstruks</h3>
+          <p>Rammer, stoppkriterier og sikker gjennomføring.</p>
+          <span class="open">Åpne dokument</span>
+        </a>
+
+        <a class="doc" href="produksjon_farrisbrua/06_Evalueringsopplegg_ODCR_AAR_B43_Farrisbrua.docx">
+          <div class="doc-top"><span class="badge docx">DOCX</span><span>06</span></div>
+          <h3>Evaluering</h3>
+          <p>ODCR-observasjon, AAR og læringspunkter etter øvelsen.</p>
+          <span class="open">Åpne dokument</span>
+        </a>
+
+        <a class="doc" href="produksjon_farrisbrua/07_Presentasjon_B43_Farrisbrua.pptx">
+          <div class="doc-top"><span class="badge pptx">PPTX</span><span>07</span></div>
+          <h3>Presentasjon</h3>
+          <p>Gjennomgang før øvelse og støtte for evaluering.</p>
+          <span class="open">Åpne presentasjon</span>
+        </a>
+
+        <a class="doc" href="produksjon_farrisbrua/08_Bildepakke_og_situasjonskort_B43_Farrisbrua.docx">
+          <div class="doc-top"><span class="badge docx">DOCX</span><span>08</span></div>
+          <h3>Bildepakke og situasjonskort</h3>
+          <p>Visuelle støttepunkter for innringere, markører og spillstab.</p>
+          <span class="open">Åpne dokument</span>
+        </a>
+
+        <a class="doc" href="produksjon_farrisbrua/00_QA_sjekkliste.md">
+          <div class="doc-top"><span class="badge md">MD</span><span>QA</span></div>
+          <h3>QA-sjekkliste</h3>
+          <p>Kontrollpunkter for dokumenter, scenario og teknisk leveranse.</p>
+          <span class="open">Åpne sjekkliste</span>
+        </a>
+
+        <a class="doc" href="produksjon_farrisbrua/09_Kilder_og_forutsetninger.md">
+          <div class="doc-top"><span class="badge md">MD</span><span>09</span></div>
+          <h3>Kilder og forutsetninger</h3>
+          <p>Faglige kilder, forutsetninger og avgrensninger.</p>
+          <span class="open">Åpne dokument</span>
+        </a>
+
+        <a class="doc" href="produksjon_farrisbrua/10_Prompter_fotorealistiske_skadestedsbilder.md">
+          <div class="doc-top"><span class="badge md">MD</span><span>10</span></div>
+          <h3>Bilde- og videoprompter</h3>
+          <p>Prompter for fotorealistiske bilder og IncidentShare-lignende video.</p>
+          <span class="open">Åpne promptpakke</span>
+        </a>
+
+        <a class="doc" href="produksjon_farrisbrua/manifest.json">
+          <div class="doc-top"><span class="badge">JSON</span><span>MAN</span></div>
+          <h3>Manifest</h3>
+          <p>Maskinlesbar oversikt over produksjonsfiler.</p>
+          <span class="open">Åpne manifest</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="bilder">
+      <div class="section-head">
+        <div>
+          <h2>Bilder og situasjonsstøtte</h2>
+          <p>Eksisterende skisser ligger klare. Fotorealistiske bilder og video kan produseres fra promptdokumentet.</p>
+        </div>
+      </div>
+
+      <div class="media-grid">
+        <figure>
+          <a href="produksjon_farrisbrua/08_bildepakke/bilde_1_farrisbrua.png"><img src="produksjon_farrisbrua/08_bildepakke/bilde_1_farrisbrua.png" alt="Bilde 1: initial oversikt"></a>
+          <figcaption>Bilde 1: initial oversikt</figcaption>
+        </figure>
+        <figure>
+          <a href="produksjon_farrisbrua/08_bildepakke/bilde_2_farrisbrua.png"><img src="produksjon_farrisbrua/08_bildepakke/bilde_2_farrisbrua.png" alt="Bilde 2: skadepunkt"></a>
+          <figcaption>Bilde 2: skadepunkt</figcaption>
+        </figure>
+        <figure>
+          <a href="produksjon_farrisbrua/08_bildepakke/bilde_3_farrisbrua.png"><img src="produksjon_farrisbrua/08_bildepakke/bilde_3_farrisbrua.png" alt="Bilde 3: trafikk og fremkommelighet"></a>
+          <figcaption>Bilde 3: trafikk og fremkommelighet</figcaption>
+        </figure>
+        <figure>
+          <a href="produksjon_farrisbrua/08_bildepakke/bilde_4_farrisbrua.png"><img src="produksjon_farrisbrua/08_bildepakke/bilde_4_farrisbrua.png" alt="Bilde 4: første ressurs fremme"></a>
+          <figcaption>Bilde 4: første ressurs fremme</figcaption>
+        </figure>
+        <figure>
+          <a href="produksjon_farrisbrua/qa/bildepakke_contactsheet.png"><img src="produksjon_farrisbrua/qa/bildepakke_contactsheet.png" alt="Kontaktark for bildepakkeskisser"></a>
+          <figcaption>Kontaktark: bildepakkeskisser</figcaption>
+        </figure>
+        <figure>
+          <a href="produksjon_farrisbrua/qa/docx_first_pages_contactsheet.png"><img src="produksjon_farrisbrua/qa/docx_first_pages_contactsheet.png" alt="Kontaktark for første side i dokumentene"></a>
+          <figcaption>Kontaktark: dokumenter</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="grunnlag">
+      <div class="section-head">
+        <div>
+          <h2>Plan, maler og faggrunnlag</h2>
+          <p>Arbeidsgrunnlaget som er brukt for å bygge øvelsespakken.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <a class="doc" href="Strategi_gjennomforing_ovelsesplanlegging.html">
+          <div class="doc-top"><span class="badge">HTML</span><span>PLAN</span></div>
+          <h3>Strategi for gjennomføring</h3>
+          <p>Oversikt over utvikling fra start til ferdig øvelsespakke.</p>
+          <span class="open">Åpne side</span>
+        </a>
+
+        <a class="doc" href="leveranseplan_realistisk_ovelse.md">
+          <div class="doc-top"><span class="badge md">MD</span><span>PLAN</span></div>
+          <h3>Leveranseplan</h3>
+          <p>Realistisk øvelse, leveranser og produksjonsrekkefølge.</p>
+          <span class="open">Åpne plan</span>
+        </a>
+
+        <a class="doc" href="scenario_totalforsvar.md">
+          <div class="doc-top"><span class="badge md">MD</span><span>SCEN</span></div>
+          <h3>Scenario totalforsvar</h3>
+          <p>Scenarioarbeid og rammer for totalforsvarskontekst.</p>
+          <span class="open">Åpne scenario</span>
+        </a>
+
+        <a class="doc" href="realistisk_110_ovingsmodell.md">
+          <div class="doc-top"><span class="badge md">MD</span><span>110</span></div>
+          <h3>Realistisk 110-modell</h3>
+          <p>Avgrensning mot reell 110-arbeidsflyt og driftsfase.</p>
+          <span class="open">Åpne modell</span>
+        </a>
+
+        <a class="doc" href="plan_alternativ_b_totalforsvar.md">
+          <div class="doc-top"><span class="badge md">MD</span><span>ALT B</span></div>
+          <h3>Alternativ B</h3>
+          <p>Overordnet plan for valgt totalforsvarsvariant.</p>
+          <span class="open">Åpne plan</span>
+        </a>
+
+        <a class="doc" href="grunnbok_oving.pdf">
+          <div class="doc-top"><span class="badge pdf">PDF</span><span>PDF</span></div>
+          <h3>Grunnbok øving</h3>
+          <p>Kurs- og metodegrunnlag for øvelsesplanlegging.</p>
+          <span class="open">Åpne PDF</span>
+        </a>
+
+        <a class="doc" href="metodehefte_evaluering_av_ovelser22.pdf">
+          <div class="doc-top"><span class="badge pdf">PDF</span><span>PDF</span></div>
+          <h3>Metodehefte evaluering</h3>
+          <p>Metodegrunnlag for systematisk evaluering.</p>
+          <span class="open">Åpne PDF</span>
+        </a>
+
+        <a class="doc" href="%C3%98velsesMal.docx">
+          <div class="doc-top"><span class="badge docx">DOCX</span><span>MAL</span></div>
+          <h3>Øvelsesmal</h3>
+          <p>Malgrunnlag for øvelsesdokumenter.</p>
+          <span class="open">Åpne mal</span>
+        </a>
+
+        <a class="doc" href="Dreiebok.docx">
+          <div class="doc-top"><span class="badge docx">DOCX</span><span>MAL</span></div>
+          <h3>Dreiebok mal</h3>
+          <p>Malgrunnlag for dreiebok.</p>
+          <span class="open">Åpne mal</span>
+        </a>
+
+        <a class="doc" href="Evaluering%20-%20AAR%20-%20formidler%20og%20veilederrollen.docx">
+          <div class="doc-top"><span class="badge docx">DOCX</span><span>MAL</span></div>
+          <h3>AAR/evaluering mal</h3>
+          <p>Malgrunnlag for evaluering og veilederrollen.</p>
+          <span class="open">Åpne mal</span>
+        </a>
+
+        <a class="doc" href="MAL%20sikkerhetsinstruks..docx">
+          <div class="doc-top"><span class="badge docx">DOCX</span><span>MAL</span></div>
+          <h3>Sikkerhetsinstruks mal</h3>
+          <p>Malgrunnlag for sikker gjennomføring.</p>
+          <span class="open">Åpne mal</span>
+        </a>
+
+        <a class="doc" href="%C3%98velsescase.docx">
+          <div class="doc-top"><span class="badge docx">DOCX</span><span>MAL</span></div>
+          <h3>Øvelsescase</h3>
+          <p>Eksempel eller mal for casebygging.</p>
+          <span class="open">Åpne dokument</span>
+        </a>
+
+        <a class="doc" href="MAL%20%C3%B8velsesbeskrivelse..doc">
+          <div class="doc-top"><span class="badge docx">DOC</span><span>MAL</span></div>
+          <h3>Øvelsesbeskrivelse mal</h3>
+          <p>Opprinnelig mal for øvelsesbeskrivelse.</p>
+          <span class="open">Åpne mal</span>
+        </a>
+
+        <a class="doc" href="%C3%98velsesplanlegging%20og%20evaluering.pptx">
+          <div class="doc-top"><span class="badge pptx">PPTX</span><span>KURS</span></div>
+          <h3>Øvelsesplanlegging og evaluering</h3>
+          <p>Kursmateriell for planlegging og evaluering.</p>
+          <span class="open">Åpne presentasjon</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p>Sist oppdatert: 4. mai 2026. Repo: <a href="https://github.com/rgrodem/brannskolen-110-ovelsesplanlegging">github.com/rgrodem/brannskolen-110-ovelsesplanlegging</a></p>
+    </footer>
+  </main>
+</body>
+</html>

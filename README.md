@@ -2,6 +2,57 @@
 
 Dette repoet samler arbeidet med å planlegge, gjennomføre og evaluere en spilløvelse for ett vaktlag på en fiktiv 110-sentral, B43, under kurs i Stavern.
 
+## Deleside
+
+- `index.html` er samlet dokumentportal for gruppen.
+- GitHub Pages-lenke når publisering er aktivert: `https://rgrodem.github.io/brannskolen-110-ovelsesplanlegging/`
+- GitHub-repo: `https://github.com/rgrodem/brannskolen-110-ovelsesplanlegging`
+
+GitHub Pages kunne ikke aktiveres mens repoet er privat med nåværende GitHub-plan. Bruk derfor repo-lenken som delbar Git-side for de som får tilgang til repoet. README-en under fungerer som klikkbar dokumentoversikt i GitHub.
+
+## Dokumentportal
+
+### Produksjonspakke Farrisbrua
+
+1. [QA-sjekkliste](produksjon_farrisbrua/00_QA_sjekkliste.md)
+2. [Øvelsesbeskrivelse](produksjon_farrisbrua/01_Ovelsesbeskrivelse_B43_Farrisbrua.docx)
+3. [Ressursplan](produksjon_farrisbrua/02_Ressursplan_B43_Farrisbrua.docx)
+4. [Innringerplan og spillkort](produksjon_farrisbrua/03_Innringerplan_og_spillkort_B43_Farrisbrua.docx)
+5. [Dreiebok](produksjon_farrisbrua/04_Dreiebok_B43_Farrisbrua.docx)
+6. [Sikkerhetsinstruks](produksjon_farrisbrua/05_Sikkerhetsinstruks_B43_Farrisbrua.docx)
+7. [Evalueringsopplegg ODCR/AAR](produksjon_farrisbrua/06_Evalueringsopplegg_ODCR_AAR_B43_Farrisbrua.docx)
+8. [Presentasjon](produksjon_farrisbrua/07_Presentasjon_B43_Farrisbrua.pptx)
+9. [Bildepakke og situasjonskort](produksjon_farrisbrua/08_Bildepakke_og_situasjonskort_B43_Farrisbrua.docx)
+10. [Kilder og forutsetninger](produksjon_farrisbrua/09_Kilder_og_forutsetninger.md)
+11. [Prompter for fotorealistiske bilder og video](produksjon_farrisbrua/10_Prompter_fotorealistiske_skadestedsbilder.md)
+12. [Manifest](produksjon_farrisbrua/manifest.json)
+
+### Bilder og QA
+
+- [Bilde 1 - initial oversikt](produksjon_farrisbrua/08_bildepakke/bilde_1_farrisbrua.png)
+- [Bilde 2 - skadepunkt](produksjon_farrisbrua/08_bildepakke/bilde_2_farrisbrua.png)
+- [Bilde 3 - trafikk og fremkommelighet](produksjon_farrisbrua/08_bildepakke/bilde_3_farrisbrua.png)
+- [Bilde 4 - første ressurs fremme](produksjon_farrisbrua/08_bildepakke/bilde_4_farrisbrua.png)
+- [Kontaktark for bildepakkeskisser](produksjon_farrisbrua/qa/bildepakke_contactsheet.png)
+- [Kontaktark for dokumentforsider](produksjon_farrisbrua/qa/docx_first_pages_contactsheet.png)
+
+### Arbeidsgrunnlag og maler
+
+- [Strategi for gjennomføring](Strategi_gjennomforing_ovelsesplanlegging.html)
+- [Leveranseplan realistisk øvelse](leveranseplan_realistisk_ovelse.md)
+- [Scenario totalforsvar](scenario_totalforsvar.md)
+- [Realistisk 110-øvingsmodell](realistisk_110_ovingsmodell.md)
+- [Plan alternativ B totalforsvar](plan_alternativ_b_totalforsvar.md)
+- [Grunnbok øving](grunnbok_oving.pdf)
+- [Metodehefte evaluering av øvelser](metodehefte_evaluering_av_ovelser22.pdf)
+- [ØvelsesMal](ØvelsesMal.docx)
+- [Øvelsescase](Øvelsescase.docx)
+- [Dreiebok mal](Dreiebok.docx)
+- [MAL øvelsesbeskrivelse](MAL%20øvelsesbeskrivelse..doc)
+- [MAL sikkerhetsinstruks](MAL%20sikkerhetsinstruks..docx)
+- [Evaluering - AAR - formidler og veilederrollen](Evaluering%20-%20AAR%20-%20formidler%20og%20veilederrollen.docx)
+- [Øvelsesplanlegging og evaluering](Øvelsesplanlegging%20og%20evaluering.pptx)
+
 ## Ramme
 
 - Sted: Stavern

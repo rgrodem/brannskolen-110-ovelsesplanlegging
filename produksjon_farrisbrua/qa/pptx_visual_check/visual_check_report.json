@@ -1,0 +1,20 @@
+{
+  "pptx": "produksjon_farrisbrua/07_Presentasjon_B43_Farrisbrua.pptx",
+  "outDir": "produksjon_farrisbrua/qa/pptx_visual_check",
+  "slideCount": 8,
+  "renderedSlides": [
+    "produksjon_farrisbrua/qa/pptx_visual_check/slide_01.png",
+    "produksjon_farrisbrua/qa/pptx_visual_check/slide_02.png",
+    "produksjon_farrisbrua/qa/pptx_visual_check/slide_03.png",
+    "produksjon_farrisbrua/qa/pptx_visual_check/slide_04.png",
+    "produksjon_farrisbrua/qa/pptx_visual_check/slide_05.png",
+    "produksjon_farrisbrua/qa/pptx_visual_check/slide_06.png",
+    "produksjon_farrisbrua/qa/pptx_visual_check/slide_07.png",
+    "produksjon_farrisbrua/qa/pptx_visual_check/slide_08.png"
+  ],
+  "contactSheet": "produksjon_farrisbrua/qa/pptx_visual_check/pptx_contactsheet.png",
+  "slideSize": {
+    "width": 1280,
+    "height": 720
+  }
+}

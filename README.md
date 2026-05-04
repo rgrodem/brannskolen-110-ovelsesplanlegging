@@ -36,6 +36,7 @@ Repoet er offentlig, slik at alle med lenken kan lese innholdet. Skrivetilgang g
 - [Bilde 4 - første ressurs fremme](produksjon_farrisbrua/08_bildepakke/bilde_4_farrisbrua.png)
 - [Kontaktark for bildepakkeskisser](produksjon_farrisbrua/qa/bildepakke_contactsheet.png)
 - [Kontaktark for dokumentforsider](produksjon_farrisbrua/qa/docx_first_pages_contactsheet.png)
+- [Kontaktark for visuell PPTX-sjekk](produksjon_farrisbrua/qa/pptx_visual_check/pptx_contactsheet.png)
 
 ### Arbeidsgrunnlag og maler
 

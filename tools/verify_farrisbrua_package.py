@@ -23,7 +23,7 @@ def pptx_check():
             root = ET.fromstring(z.read(n))
             text.extend([t.text or "" for t in root.findall(".//a:t", ns)])
     joined = "\n".join(text)
-    required = ["FARRISBRUA B43", "For-brief", "Laringsmal", "STOPP OVELSE B43", "AAR"]
+    required = ["FARRISBRUA B43", "Før-brief", "Læringsmål", "STOPP ØVELSE B43", "AAR"]
     return {
         "slides": len(slides),
         "missing": [r for r in required if r not in joined],
@@ -83,7 +83,13 @@ def main():
     lines.append(f"- Slides: {ppt['slides']}")
     lines.append(f"- Teksttegn: {ppt['chars']}")
     lines.append(f"- Manglende kontrollord: {', '.join(ppt['missing']) if ppt['missing'] else 'ingen'}")
-    lines.append("- Visuell PPTX-render: ikke kjørt; ingen headless PowerPoint/LibreOffice-renderer er tilgjengelig i miljøet.")
+    visual_report = OUT / "qa" / "pptx_visual_check" / "visual_check_report.json"
+    if visual_report.exists():
+        visual = json.loads(visual_report.read_text(encoding="utf-8"))
+        lines.append(f"- Visuell PPTX-render: OK - {visual['slideCount']} slides rendret til PNG.")
+        lines.append(f"- Kontaktark: `{visual['contactSheet']}`")
+    else:
+        lines.append("- Visuell PPTX-render: ikke kjørt.")
 
     lines.extend([
         "",

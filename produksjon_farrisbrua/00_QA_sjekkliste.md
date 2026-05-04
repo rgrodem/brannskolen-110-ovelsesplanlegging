@@ -32,9 +32,10 @@ Merknad: artifact-tool returnerte exitkode 1 uten stderr, men produserte PNG-sid
 ## Presentasjon
 
 - Slides: 8
-- Teksttegn: 2680
+- Teksttegn: 2679
 - Manglende kontrollord: ingen
-- Visuell PPTX-render: ikke kjørt; ingen headless PowerPoint/LibreOffice-renderer er tilgjengelig i miljøet.
+- Visuell PPTX-render: OK - 8 slides rendret til PNG.
+- Kontaktark: `produksjon_farrisbrua/qa/pptx_visual_check/pptx_contactsheet.png`
 
 ## Scenarioavklaringer valgt i førsteutkast
 

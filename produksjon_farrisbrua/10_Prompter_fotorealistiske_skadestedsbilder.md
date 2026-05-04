@@ -1,29 +1,49 @@
-# Prompter for fotorealistiske skadestedsbilder
+# Prompter for konsistente fotorealistiske skadestedsbilder
 
-Disse promptene er laget for Nano Banana eller tilsvarende bildegenerator. De skal erstatte skissene i `08_bildepakke/`.
+Disse promptene er laget for Nano Banana eller tilsvarende bildegenerator. Målet er å lage fire nye bilder der alle ser samme hendelse: samme røde personbil, samme militære logistikkjøretøy, samme kjørefelt, samme skadepunkt, samme retning og samme utvikling i tid.
 
-Målet er å lage realistiske øvingsbilder som gir situasjonsforståelse for 110-operatører, uten grafiske personskader, identifiserbare personer, ekte registreringsnummer, etatslogoer eller misvisende informasjon.
+Den viktigste forbedringen er at alle prompts bruker en fast **scene-bibel**. Ikke endre denne mellom bildene.
 
-## Viktig bruksmåte
+## Bruksmåte for best kontinuitet
 
-For best kontinuitet:
+1. Bruk samme format hver gang: 16:9, helst 1600 x 900 eller høyere.
+2. Generer først `Bilde 1`.
+3. Bruk `Bilde 1` som referansebilde for `Bilde 2-4` hvis verktøyet støtter image reference.
+4. Bruk samme seed hvis verktøyet støtter seed.
+5. Ikke be generatoren om "new angle from the opposite side". Alle kameraer skal være på samme trafikkside, bak eller skrått bak hendelsen.
+6. Forkast bilder der bilen/lastebilen bytter side, kjøretøyene speiles, bilen står foran lastebilen, eller skaden flyttes til feil side.
 
-1. Generer først **Bilde 1**.
-2. Bruk Bilde 1 som referansebilde for Bilde 2-4 hvis verktøyet støtter referanse.
-3. Be verktøyet beholde samme sted, vær, lys, kjøretøy og retning.
-4. Ikke bruk ekte foto av en reell ulykke.
-5. Ikke legg inn blod, døde personer, hardt skadde personer eller identifiserbare ansikter.
+## Fast scene-bibel
 
-## Felles stilprompt
-
-Bruk dette som fast innledning i alle bildepromptene:
+Denne delen skal være med i alle prompts. Den låser geometri, kjøretøy og hendelse.
 
 ```text
-Create a photorealistic emergency exercise image for a Norwegian 110 emergency dispatch training scenario. The scene is a staged, fictional traffic incident on E18 Farrisbrua near Larvik, Norway, on a modern motorway bridge over water and forested terrain. Overcast Nordic daylight, realistic road surface, concrete bridge barriers, muted natural colors, documentary emergency-service photography style, 35mm lens, eye-level or slightly elevated viewpoint, high detail, realistic perspective, no cinematic exaggeration.
+PHOTOREALISTIC TRAINING IMAGE. Create a realistic emergency exercise image for a Norwegian 110 emergency dispatch training scenario. The scene is fictional and staged, but must look like a real documentary training photograph.
 
-The image must look like a realistic training photograph, not a movie poster and not an illustration. No gore, no blood, no visible severe injuries, no identifiable faces, no readable license plates, no real emergency-service logos, no brand logos, no text overlays, no watermark.
+LOCATION AND ROAD GEOMETRY:
+E18 Farrisbrua near Larvik, Norway, modern motorway bridge over water and forested terrain, overcast Nordic daylight, slightly damp asphalt, concrete bridge barriers, muted realistic colors. The visible carriageway has two lanes in the same direction. Traffic direction is away from the camera, toward Oslo/Sandefjord. The camera is always behind the incident or slightly behind-left of the incident, looking forward in the same direction as stopped traffic. Do not show the opposite carriageway as the main scene. Do not mirror the scene.
 
-Scenario continuity: same incident throughout the image series: a red civilian passenger car has front-end damage after a collision with a dark green military logistics truck on E18 Farrisbrua. Light grey smoke comes from the red car's engine compartment. The military vehicle is present as total-defence context only, not as a combat scene. No weapons, no ammunition, no explosion, no fireball.
+FIXED INCIDENT LAYOUT - MUST STAY IDENTICAL IN ALL IMAGES:
+- A dark olive-green military logistics truck is stopped in the RIGHT lane, close to the right concrete bridge barrier.
+- The military truck points away from the camera, in the same direction as traffic.
+- The truck is a non-combat logistics/cargo vehicle: boxy cab, canvas-covered cargo bed, 6 wheels, matte dark green, no weapons, no ammunition, no visible insignia, no readable markings.
+- A red civilian 5-door compact station wagon / hatchback is BEHIND the truck, never in front of it.
+- The red car has struck the LEFT rear corner of the military truck.
+- The red car's FRONT-RIGHT corner is crushed into or very close to the truck's LEFT rear corner.
+- The red car is diagonal: its nose points slightly right toward the truck, and its rear points slightly left into the left lane.
+- From the camera behind the incident, the red car is slightly LEFT of the truck, the truck is ahead and to the RIGHT.
+- The car remains in exactly this same position in every image. The truck remains in exactly this same position in every image.
+- Light grey smoke comes from the red car's front engine compartment. No visible flames in images 1-3. Image 4 may show only light residual smoke.
+- Traffic is stopped behind the incident in both lanes. The incident blocks the right lane and partly blocks the left lane.
+
+CONTINUITY LOCK:
+Use the same red car model, same dark green logistics truck, same damage, same smoke source, same lane positions, same bridge setting, same weather, same time of day and same road direction in all images. Do not swap left/right. Do not place the red car on the other side of the truck. Do not move the truck to the left lane. Do not rotate the scene 180 degrees. Do not change the red car into a sedan, SUV or different color. Do not change the military truck into an armored combat vehicle.
+
+STYLE:
+Photorealistic documentary emergency-service training photo, realistic perspective, natural Nordic daylight, no cinematic exaggeration, no dramatic movie lighting, no CGI look, no illustration, no toy-like vehicles.
+
+SAFETY AND PRIVACY:
+No gore, no blood, no dead body, no visible severe injuries, no identifiable faces, no readable license plates, no real emergency-service logos, no brand logos, no military insignia, no text overlays, no watermark.
 ```
 
 ## Negativ prompt
@@ -31,180 +51,187 @@ Scenario continuity: same incident throughout the image series: a red civilian p
 Bruk denne i negativt promptfelt hvis verktøyet har det:
 
 ```text
-gore, blood, dead body, severe injury, trapped person visible in distress, identifiable face, readable license plate, real police logo, real ambulance logo, real fire department logo, brand logo, military weapons, ammunition, explosion, fireball, terrorism, war scene, dramatic action movie lighting, rainstorm, night scene, snow, helicopter, crowd panic, news graphics, text, watermark, blurry, cartoon, illustration, CGI, toy-like vehicles, unrealistic road geometry
+mirrored scene, reversed direction, car in front of truck, truck in left lane, red car on wrong side, different car, different truck, SUV, sedan, armored vehicle, tank, weapons, ammunition, explosion, fireball, large flames, war scene, terrorism, police chase, helicopter, gore, blood, dead body, severe injury, trapped person visible in distress, identifiable face, readable license plate, real police logo, real ambulance logo, real fire department logo, brand logo, military insignia, text, watermark, news graphics, cartoon, illustration, CGI, toy-like vehicles, unrealistic bridge geometry, wrong road direction, night, snow, heavy rain, panic crowd
 ```
+
+## Kvalitetskontroll før bildet tas inn i dokumentene
+
+Godkjenn bare bilder som svarer "ja" på disse punktene:
+
+- Står militærlastebilen i høyre felt, foran bilen, nær høyre betongrekkverk?
+- Står den røde bilen bak og litt til venstre for lastebilen?
+- Er bilens front-høyre hjørne mot lastebilens venstre bakhjørne?
+- Peker begge kjøretøy i samme kjøreretning, bort fra kamera?
+- Kommer røyken fra motorrommet på den røde bilen?
+- Er dette samme hendelse som de andre bildene, ikke en ny ulykke?
 
 ## Bilde 1 - Initial oversikt fra første melder
 
-**Bruk i øvelsen:** ca. 10-15 minutter hvis de øvende trenger visuell støtte til posisjon og omfang. Kan også brukes i ettergjennomgang.
+**Bruk i øvelsen:** Initialfase. Første melder har grunnlag for trippelvarsling og utalarmering.
 
 **Ønsket læring:** posisjon, kjørefelt, røyk/brannindikasjon, militær kolonne som kontekst, trafikkstans.
 
 ```text
-[FELLES STILPROMPT]
+[PASTE THE FIXED SCENE BIBLE HERE]
 
-Image 1 of 4: Initial overview from the first caller's perspective, about 30 to 50 meters behind the incident. The camera is inside or just outside a stopped civilian car in the traffic queue, looking forward along E18 Farrisbrua in the direction of Oslo/Sandefjord. In the middle distance, a red civilian passenger car with front-end damage is stopped at an angle near a dark green military logistics truck. Light grey smoke rises from the red car's engine compartment. Several civilian vehicles are stopped behind the incident with hazard lights, but no crowd.
+IMAGE 1 OF 4 - INITIAL CALLER OVERVIEW:
+The camera is inside or just outside a stopped civilian car in the traffic queue, approximately 35-50 meters behind the incident. Viewpoint is eye-level from behind the incident, looking forward along E18 Farrisbrua in the same direction as traffic.
 
-There are no emergency vehicles visible yet. A few people are standing at a safe distance near the vehicles, seen from behind or too far away to identify. The bridge, water below, concrete barriers and wooded Larvik/Farris landscape are visible enough to establish location and scale. The scene should communicate uncertainty: possible fire, possible injuries, traffic blocked, but not chaos.
+Show the fixed incident layout clearly in the middle distance: the dark olive-green military logistics truck stopped in the RIGHT lane near the right bridge barrier, and the red 5-door compact station wagon / hatchback BEHIND it, slightly left of the truck, diagonal, with its front-right corner damaged against the truck's left rear corner. Light grey smoke rises from the red car's engine compartment.
 
-Composition: wide horizontal 16:9 image, slightly elevated eye-level viewpoint, realistic distance, enough empty road and bridge context for a dispatcher to understand the scene.
+No emergency vehicles have arrived yet. Several civilian vehicles are stopped behind the incident in both lanes with hazard lights. A few bystanders stand at a safe distance near the stopped vehicles, seen from behind or too far away to identify. The bridge, concrete barriers, water and forested Larvik/Farris landscape should be visible enough to establish location and scale.
+
+The image should communicate uncertainty: possible fire, possible injuries, blocked traffic, and a military logistics truck as total-defence context, but not chaos.
+
+Composition: horizontal 16:9, realistic documentary training photo, slightly elevated eye-level view, enough road and bridge context for a 110 operator to understand the scene.
 ```
 
 ## Bilde 2 - Nærmere observasjon av skadepunkt
 
-**Bruk i øvelsen:** ca. 15-22 minutter, som supplerende bilde fra melder eller før første ressurs er fremme.
+**Bruk i øvelsen:** Supplerende bilde fra melder eller avklaring før første ressurs er fremme.
 
 **Ønsket læring:** skille røyk fra åpen flamme, forstå personbil mot tyngre kjøretøy, avklare mulig diesel/lekkasje uten å overdrive farlig last.
 
 ```text
-[FELLES STILPROMPT]
+[PASTE THE FIXED SCENE BIBLE HERE]
 
-Image 2 of 4: Closer view of the collision point, still before emergency vehicles arrive. The red civilian passenger car has visible front-end damage against or very close to a dark green military logistics truck. Light grey smoke comes from the car's engine compartment, but there are no visible flames. The truck is stationary and intact enough to look like a heavy logistics vehicle, not a combat vehicle. A faint dark wet-looking patch near the vehicles suggests possible diesel or coolant on the road, but it is not dramatic and not spreading widely.
+IMAGE 2 OF 4 - CLOSER VIEW OF THE SAME COLLISION POINT:
+Create a closer view from a safe roadside position behind-left of the incident, still looking forward in the same traffic direction. This is the exact same incident and exact same vehicle placement as Image 1. Do not mirror the scene and do not move either vehicle.
 
-Two people in neutral outdoor clothing or indistinct uniforms stand at a safe distance, backs turned or faces not visible. One person appears to be speaking on a phone. No one is visibly injured in a graphic way. The motorway lanes and bridge barriers are clear. Traffic is stopped behind the incident.
+The dark olive-green military logistics truck remains stopped in the RIGHT lane near the right concrete bridge barrier, pointing away from the camera. The red 5-door compact station wagon / hatchback remains BEHIND and slightly LEFT of the truck, diagonal, with its front-right corner crushed into or very close to the truck's left rear corner. The rear of the red car still points slightly left into the left lane. Light grey smoke comes from the red car's front engine compartment. No visible flames.
 
-Composition: horizontal 16:9, realistic telephoto/normal perspective from a safe roadside distance, detailed but not sensational.
+Show moderate front-end damage on the red car, focused on the front-right corner. Show the truck as heavy but not destroyed. A small dark wet-looking patch near the front of the red car may suggest possible coolant or diesel on the asphalt, but it must be small and not dramatic.
+
+Two people in neutral outdoor clothing or indistinct uniforms stand at a safe distance, backs turned or faces not visible. One person may be holding a phone. No graphic injury is visible. Traffic is stopped behind the incident.
+
+Composition: horizontal 16:9, realistic normal/short-telephoto perspective from behind-left, detailed but not sensational.
 ```
 
 ## Bilde 3 - Trafikk og fremkommelighet for VTS
 
-**Bruk i øvelsen:** ca. 35-45 minutter, som bilde eller situasjonsbeskrivelse fra VTS.
+**Bruk i øvelsen:** Situasjonsbilde fra VTS/politi om kø, stenging og fremkommelighet.
 
 **Ønsket læring:** trafikk, fremkommelighet, behov for stenging, trygg arbeidsplass og samvirke med politi/VTS.
 
 ```text
-[FELLES STILPROMPT]
+[PASTE THE FIXED SCENE BIBLE HERE]
 
-Image 3 of 4: Wider traffic-management view of the same incident on E18 Farrisbrua. The red car and dark green military logistics truck are visible farther ahead, with stopped traffic behind them. Several civilian vehicles form a queue in the same direction. One lane is clearly blocked, and the second lane has limited or no passage. The bridge setting over water and forested terrain is visible. Add a generic yellow road-service or traffic-management vehicle at a distance if useful, but without readable logos or text.
+IMAGE 3 OF 4 - WIDER TRAFFIC AND ACCESS VIEW:
+Create a wider elevated traffic-management view from behind the same incident, as if seen from a roadside/VTS-style camera or elevated roadside position. The camera still looks forward in the same direction as traffic. This is the exact same incident as Image 1 and Image 2. Do not mirror the scene and do not move the vehicles.
 
-No emergency response should dominate the image yet, or show only distant non-branded blue-light presence if necessary. The purpose is to show queue length, blocked lanes and limited access for responding resources, not dramatic rescue.
+Farther ahead, the dark olive-green military logistics truck is still stopped in the RIGHT lane near the right bridge barrier, pointing away from the camera. The red 5-door compact station wagon / hatchback is still BEHIND and slightly LEFT of the truck, diagonal, with its front-right corner at the truck's left rear corner. Light grey smoke comes from the red car's engine compartment.
 
-Composition: horizontal 16:9, elevated viewpoint as if from a roadside camera or VTS-style overview, realistic Norwegian motorway bridge, clean and readable scene geometry.
+Show the traffic consequence: stopped vehicles form a queue behind the incident in both lanes. The right lane is blocked by the truck and damaged red car. The left lane is partly blocked by the diagonal rear of the red car and stopped traffic, leaving limited or no passage for responding resources. The bridge over water, concrete barriers and forested terrain are visible.
+
+No emergency response should dominate this image. If any blue-light presence is visible, it must be very distant and generic, with no readable logos. The purpose is queue length, blocked lanes and access limitations, not rescue work.
+
+Composition: horizontal 16:9, elevated realistic overview, clean and readable scene geometry, same road direction and vehicle positions as the other images.
 ```
 
 ## Bilde 4 - Første ressurs fremme / overgang til driftsfase
 
-**Bruk i øvelsen:** ca. 22-35 minutter eller i driftsfase når UL/IL gir vindusmelding.
+**Bruk i øvelsen:** Vindusmelding, første ressurs fremme, overgang til driftsfase.
 
-**Ønsket læring:** vindusmelding, brann/røyk under kontroll/avklaring, første ressurs fremme, overgang fra akuttfase til driftsfase.
+**Ønsket læring:** brann/røyk under kontroll/avklaring, første ressurs fremme, strukturert arbeid på stedet.
 
 ```text
-[FELLES STILPROMPT]
+[PASTE THE FIXED SCENE BIBLE HERE]
 
-Image 4 of 4: First fire and ambulance resources have arrived at the same Farrisbrua incident. A generic red fire engine without readable logos is parked behind the damaged red car and the dark green military logistics truck, positioned to protect the scene. A generic white ambulance without readable logos is visible farther back. Responders in high-visibility gear are working calmly, seen from behind or with faces obscured. One firefighter is near the red car's engine compartment with a hose line or extinguisher ready, but there are no visible flames and only light residual smoke.
+IMAGE 4 OF 4 - FIRST RESOURCES ARRIVED, SAME INCIDENT:
+Create a realistic documentary training photo after first fire and ambulance resources have arrived. The fixed incident layout must remain identical to Images 1-3. Do not mirror the scene and do not move the damaged vehicles.
 
-The scene now looks controlled and structured: traffic stopped, working area protected, police/VTS traffic management implied but not visually dominant. No gore, no visible severe injuries, no panic. The image should communicate that first resource is on scene and the incident is moving into a managed operational phase.
+The dark olive-green military logistics truck remains stopped in the RIGHT lane near the right bridge barrier, pointing away from the camera. The red 5-door compact station wagon / hatchback remains BEHIND and slightly LEFT of the truck, diagonal, with its front-right corner at the truck's left rear corner. Only light residual grey smoke is visible from the red car's engine compartment. No visible flames.
 
-Composition: horizontal 16:9, realistic documentary emergency-service photograph, slightly elevated viewpoint, clear view of vehicle positions and emergency response layout.
+A generic red fire engine without readable logos is parked behind the incident, aligned with the traffic direction, protecting the work area. It should not hide the red car and truck. A generic white ambulance without readable logos is positioned farther back in the queue or shoulder area. Responders in high-visibility protective gear work calmly around the driver's side/front area of the red car, seen from behind or with faces obscured. One firefighter may stand near the engine compartment with a hose line or extinguisher ready. Ambulance personnel may stage equipment nearby, but no patient close-up is visible.
+
+The scene now looks controlled and structured: stopped traffic, protected work area, calm responders, no panic. The image should communicate that first resource is on scene and the incident is moving into a managed operational phase.
+
+Composition: horizontal 16:9, slightly elevated viewpoint from behind-left, clear view of vehicle positions and emergency response layout, same road direction and same damaged vehicle placement as the previous images.
 ```
 
-## Alternativ: samlet prompt for alle fire bilder
+## Alternativ: generer alle fire som én serie
 
-Hvis verktøyet kan generere en serie med fire konsistente bilder samtidig:
+Hvis verktøyet kan lage en sammenhengende serie eller en 2x2 kontaktplate, bruk denne. Den kan gi bedre intern konsistens enn fire uavhengige genereringer. Del deretter opp bildet i fire separate 16:9-bilder.
 
 ```text
-Create a consistent four-image photorealistic series for a Norwegian 110 emergency dispatch training scenario. Use the same fictional incident, same location, same weather, same vehicles and same road direction in all four images.
+Create a consistent four-image photorealistic series for a Norwegian 110 emergency dispatch training scenario. The four images must show the same fictional incident on E18 Farrisbrua near Larvik, Norway, from different distances and moments in time, but with the exact same vehicle placement and damage in every image.
 
-Location: E18 Farrisbrua near Larvik, Norway, modern motorway bridge over water and forested terrain, overcast Nordic daylight.
+Use a 2x2 grid with four separate horizontal 16:9 documentary training photos. No text labels inside the images.
 
-Incident: a red civilian passenger car has collided with or struck the rear/side of a dark green military logistics truck in a military convoy. Light grey smoke from the red car's engine compartment. No visible flames in images 1-3, no explosion, no weapons, no ammunition, no gore.
+FIXED INCIDENT LAYOUT FOR ALL FOUR PANELS:
+E18 Farrisbrua, modern motorway bridge over water and forested terrain, overcast Nordic daylight, damp asphalt, concrete bridge barriers. Camera direction is always from behind the incident, looking forward in the same direction as traffic toward Oslo/Sandefjord.
 
-Image 1: initial overview from first caller, 30-50 meters behind, no emergency vehicles yet, traffic stopped, uncertain situation.
-Image 2: closer view of red car and military logistics truck, light smoke, possible small fluid patch, no visible severe injuries.
-Image 3: wider traffic/VTS view showing blocked lanes, queue and limited access on the bridge.
-Image 4: first fire resource and ambulance arrived, generic non-branded emergency vehicles, calm responders, light residual smoke, controlled scene moving into driftsfase.
+A dark olive-green military logistics truck is stopped in the RIGHT lane near the right concrete barrier, pointing away from the camera. A red civilian 5-door compact station wagon / hatchback is BEHIND and slightly LEFT of the truck, diagonal. The red car's front-right corner is crushed into the truck's left rear corner. The rear of the red car points slightly left into the left lane. Light grey smoke comes from the red car's front engine compartment. This exact geometry must not change in any panel. Do not mirror any panel. Do not place the red car on the opposite side. Do not move the truck to the left lane. Do not show the red car in front of the truck.
 
-Style: photorealistic documentary emergency-service training photos, 16:9 horizontal, realistic perspective, muted colors, no logos, no readable license plates, no identifiable faces, no text overlays, no watermark.
+Panel 1: Initial caller overview, 35-50 meters behind, no emergency vehicles, stopped civilian traffic, uncertain but controlled scene.
+Panel 2: Closer behind-left view of the same collision point, visible front-right damage on the red car, small possible fluid patch, no flames.
+Panel 3: Wider elevated traffic/VTS view, queue behind the incident, right lane blocked and left lane partly blocked, limited access.
+Panel 4: First fire and ambulance resources arrived, generic non-branded fire engine and ambulance behind the incident, calm responders, light residual smoke, controlled work area.
+
+Style: photorealistic documentary emergency-service training photos, realistic perspective, muted Nordic colors, no cinematic exaggeration, no gore, no blood, no identifiable faces, no readable license plates, no real logos, no text overlays, no watermark.
 ```
 
-## Videoprompt - 15 sekunder mobilvideo til 110
+## Videoprompt 1 - 15 sekunder mobilvideo til 110
 
-Bruk denne til å lage en kort video som skal se ut som en realistisk mobilvideo sendt inn til 110 via en løsning som minner om IncidentShare. Videoen skal gi situasjonsforståelse, ikke være dramatisk eller filmatisk.
+Denne er oppdatert med samme scene-bibel og samme geometri som bildene.
 
 ```text
-Create a 15-second photorealistic handheld smartphone video from the perspective of a civilian caller approaching and filming a traffic incident for the Norwegian 110 emergency dispatch centre through a secure incident video-sharing link. The video should feel like authentic field footage captured on a modern phone, not a movie scene.
+Create a 15-second photorealistic handheld vertical smartphone video from the perspective of a civilian caller filming for the Norwegian 110 emergency dispatch centre through a secure incident video-sharing link similar to IncidentShare.
 
-Location and continuity:
-E18 Farrisbrua near Larvik, Norway. Modern motorway bridge over water and forested terrain, overcast Nordic daylight, wet or slightly damp asphalt, muted realistic colors. Same fictional incident as the still-image series: a red civilian passenger car has collided with or struck the rear/side of a dark green military logistics truck in a military convoy. Light grey smoke is coming from the red car's engine compartment. Traffic is stopped behind the incident.
+Use the exact same fictional incident geometry as the still-image series:
+E18 Farrisbrua near Larvik, Norway, modern motorway bridge over water and forested terrain, overcast Nordic daylight, damp asphalt. Camera starts behind stopped traffic and looks forward in the same direction as traffic toward Oslo/Sandefjord.
+
+A dark olive-green military logistics truck is stopped in the RIGHT lane near the right concrete bridge barrier, pointing away from the camera. A red civilian 5-door compact station wagon / hatchback is BEHIND and slightly LEFT of the truck, diagonal, with its front-right corner crushed into the truck's left rear corner. The red car's rear points slightly left into the left lane. Light grey smoke comes from the red car's front engine compartment. Do not mirror this geometry. Do not move the vehicles. Do not place the car in front of the truck.
 
 Camera style:
-Handheld vertical smartphone video, 9:16 format, natural walking movement, slight hand shake, realistic phone autofocus and exposure changes. The camera operator is walking slowly and carefully along the stopped traffic or road shoulder toward the incident from approximately 50 meters away to approximately 20 meters away. The person filming stays behind stopped vehicles and does not enter the danger area.
+Handheld 9:16 smartphone video, natural walking movement, slight hand shake, realistic phone autofocus and exposure changes. The camera operator walks slowly and carefully from approximately 50 meters behind the incident to approximately 20 meters behind it, staying behind stopped vehicles and outside the danger area.
 
 Timeline:
-0-3 seconds: The camera starts behind stopped vehicles on E18. The bridge structure, traffic queue and blocked lane are visible. The incident is visible in the distance with faint smoke.
-3-8 seconds: The camera moves slowly closer. The red car and dark green military logistics truck become clearer. Light smoke from the car's engine compartment is visible. A few bystanders are seen at a safe distance, with faces turned away or blurred by distance.
-8-12 seconds: The camera pauses briefly and pans slightly from the traffic queue to the damaged vehicles, giving 110 a better overview of lane blockage, vehicle position and smoke development.
-12-15 seconds: The camera stops at a safe distance. The final view holds steady enough to show the red car, the military truck, stopped traffic, light smoke and the bridge environment.
+0-3 seconds: Starts behind stopped civilian vehicles on the bridge. Traffic queue and blocked lanes are visible. Incident is ahead with faint smoke.
+3-8 seconds: Camera moves slowly closer. The red car behind-left of the green military truck becomes clearer. Smoke from the car's front engine compartment is visible.
+8-12 seconds: Camera pauses and pans slightly from queue to damaged vehicles, showing lane blockage, vehicle positions and smoke.
+12-15 seconds: Final steady view from safe distance, showing red car, military truck, stopped traffic, light smoke and bridge environment.
 
-Operational realism:
-No emergency vehicles have arrived yet. No visible flames, no explosion, no weapons, no ammunition, no panic crowd. The situation should look serious but manageable and realistic for an initial 110 caller video. The video should support emergency dispatch situational awareness: vehicle type, approximate location, smoke, traffic blockage and safe access.
-
-Safety and privacy constraints:
-No gore, no blood, no dead bodies, no visible severe injuries, no identifiable faces, no readable license plates, no real emergency service logos, no military insignia, no brand logos, no on-screen text, no subtitles, no watermark. Do not show the person filming entering traffic danger or standing between vehicles.
-
-Visual quality:
-Photorealistic, documentary realism, natural Nordic daylight, real-world physics, realistic vehicle damage, realistic smoke behavior, no cinematic color grading, no dramatic music-video style, no CGI look, no cartoon style, no artificial camera drone movement.
+No emergency vehicles have arrived yet. No gore, no blood, no visible severe injuries, no identifiable faces, no readable plates, no real logos, no weapons, no ammunition, no text, no watermark.
 ```
 
-Negativ prompt for video:
+## Videoprompt 2 - 15 sekunder etter at første ressurser er fremme
 
 ```text
-gore, blood, dead body, severe injury, identifiable face, readable license plate, real logos, military insignia, weapons, ammunition, explosion, fireball, terrorism, war scene, panic crowd, police chase, helicopter, night, storm, snow, cinematic movie shot, drone shot, perfectly smooth camera, action movie, news overlay, subtitles, text, watermark, blurry low quality, cartoon, CGI, toy-like vehicles, unrealistic bridge geometry
-```
+Create a 15-second photorealistic handheld vertical smartphone video from a civilian observer filming from a safe distance for the Norwegian 110 emergency dispatch centre through a secure incident video-sharing link similar to IncidentShare.
 
-Foreslått eksportnavn:
+Use the exact same fixed incident geometry as the still-image series:
+E18 Farrisbrua near Larvik, Norway, modern motorway bridge over water and forested terrain, overcast Nordic daylight, damp asphalt. Camera remains behind or behind-left of the incident, looking forward in the same direction as traffic.
 
-- `video_1_farrisbrua_incidentshare_15sek.mp4`
-
-## Videoprompt 2 - 15 sekunder avstandsvideo etter at første ressurser er fremme
-
-Bruk denne til en senere situasjonsvideo der innringer eller observatør filmer fra trygg avstand etter at brann og ambulanse er kommet frem. Videoen skal vise arbeid med frigjøring/uthenting av fører uten å vise pasient tett på.
-
-```text
-Create a 15-second photorealistic handheld vertical smartphone video from the perspective of a civilian observer filming from a safe distance for the Norwegian 110 emergency dispatch centre through a secure incident video-sharing link, similar to IncidentShare. The video should look like authentic field footage captured on a modern phone, not a cinematic rescue scene.
-
-Location and continuity:
-E18 Farrisbrua near Larvik, Norway. Modern motorway bridge over water and forested terrain, overcast Nordic daylight, damp asphalt, realistic muted colors. Same fictional incident as the still-image series: a red civilian passenger car has collided with or struck the rear/side of a dark green military logistics truck. Light residual grey smoke is still visible near the red car's engine compartment. Traffic is stopped and controlled behind the incident.
+A dark olive-green military logistics truck remains stopped in the RIGHT lane near the right concrete bridge barrier, pointing away from the camera. A red civilian 5-door compact station wagon / hatchback remains BEHIND and slightly LEFT of the truck, diagonal, with its front-right corner at the truck's left rear corner. Only light residual grey smoke is visible from the red car's engine compartment. Do not mirror the geometry. Do not move the vehicles.
 
 Situation:
-Fire and ambulance have arrived. A generic red fire engine without readable logos is parked behind the damaged red car to protect the scene. A generic white ambulance without readable logos is positioned slightly farther back. Firefighters in high-visibility protective clothing are working at the driver's side of the red car, preparing or carrying out a controlled extrication of the driver. Ambulance personnel are nearby with a stretcher or medical bag, waiting for safe access. The driver is not clearly visible; the patient area is partly blocked by responders, the car frame and open doors. No graphic injury is shown.
+Fire and ambulance have arrived. A generic red fire engine without readable logos is parked behind the incident to protect the work area. A generic white ambulance without readable logos is positioned farther back. Firefighters in high-visibility protective clothing work calmly around the red car, preparing or carrying out controlled extrication/driver access. Ambulance personnel are nearby with stretcher or medical bag. The driver/patient is not clearly visible and no close-up injury is shown.
 
 Camera style:
-Handheld 9:16 smartphone video, filmed from approximately 40-70 meters away behind stopped vehicles or from a safe shoulder position. Slight natural hand shake, realistic phone autofocus and exposure changes. The camera operator does not walk into the working area and does not interfere with responders. The framing should show the overall scene: bridge, blocked lanes, emergency vehicle placement, smoke, responders and the damaged vehicles.
+Handheld 9:16 smartphone video from approximately 40-70 meters behind the incident, behind stopped traffic or on a safe shoulder position. Slight natural hand shake, realistic phone autofocus and exposure changes. The camera operator does not enter the work area.
 
 Timeline:
-0-3 seconds: The camera starts from behind the traffic queue or a safe roadside position. Fire engine, ambulance and stopped traffic are visible in the distance.
-3-7 seconds: The camera slowly zooms or steps slightly forward while staying at a safe distance. The red car, dark green military logistics truck and responders working at the driver's side become clearer.
-7-11 seconds: The camera holds steady and pans slightly across the scene, showing firefighters working around the driver's door area and ambulance personnel staged nearby with stretcher or equipment.
-11-15 seconds: The camera settles on a wider overview showing vehicle positions, blocked lanes, emergency resources, light smoke and calm controlled rescue work. The final view should give 110 useful situational awareness without showing close-up patient details.
+0-3 seconds: Starts behind the queue, showing fire engine, ambulance and stopped traffic in the distance.
+3-7 seconds: Slowly zooms or steps slightly forward while staying safe. Red car, green military truck and responders become clearer.
+7-11 seconds: Holds steady and pans slightly across firefighters working near the driver's side/front area and ambulance personnel staged nearby.
+11-15 seconds: Settles on a wider overview of vehicle positions, blocked lanes, emergency resources, light residual smoke and calm controlled rescue work.
 
-Operational realism:
-The scene should communicate that the incident has moved from initial response into an organized rescue phase. Show calm, coordinated work, protected work area, stopped traffic and limited access on the bridge. No panic, no dramatic running, no explosion, no weapons, no ammunition. The video should be useful for a 110 operator to understand that first resources are on scene, extrication is underway and traffic remains blocked.
-
-Safety and privacy constraints:
-No gore, no blood, no dead bodies, no visible severe injuries, no identifiable faces, no readable license plates, no real emergency service logos, no military insignia, no brand logos, no on-screen text, no subtitles, no watermark. Do not show close-up views of the patient. Do not show the person filming entering the hazard zone or standing between emergency vehicles.
-
-Visual quality:
-Photorealistic documentary realism, natural Nordic daylight, real-world physics, realistic vehicle damage, realistic smoke behavior, realistic emergency service posture, no cinematic color grading, no dramatic rescue-movie lighting, no CGI look, no cartoon style, no drone movement.
+No gore, no blood, no dead bodies, no visible severe injuries, no identifiable faces, no readable plates, no real logos, no weapons, no ammunition, no text, no watermark.
 ```
-
-Negativ prompt for video 2:
-
-```text
-gore, blood, dead body, severe injury close-up, identifiable patient, identifiable face, readable license plate, real logos, military insignia, weapons, ammunition, explosion, fireball, terrorism, war scene, panic crowd, dramatic rescue movie, police chase, helicopter, night, storm, snow, cinematic shot, drone shot, perfectly smooth camera, action movie, news overlay, subtitles, text, watermark, blurry low quality, cartoon, CGI, toy-like vehicles, unrealistic bridge geometry, unsafe camera position
-```
-
-Foreslått eksportnavn:
-
-- `video_2_farrisbrua_ressurser_fremme_15sek.mp4`
 
 ## Filnavn ved eksport
 
-Bruk disse filnavnene når bildene eksporteres og legges inn i øvelsespakken:
+Når bildene er valgt og skal legges inn i øvelsespakken, bruk disse filnavnene:
 
 - `bilde_1_farrisbrua_foto.png`
 - `bilde_2_farrisbrua_foto.png`
 - `bilde_3_farrisbrua_foto.png`
 - `bilde_4_farrisbrua_foto.png`
 
-Når bildene er valgt, bør `08_Bildepakke_og_situasjonskort_B43_Farrisbrua.docx` oppdateres slik at skissene erstattes med de fotorealistiske bildene.
+Når nye bilder er valgt, erstattes de gjeldende filene i `08_bildepakke/`:
+
+- `bilde_1_farrisbrua.png`
+- `bilde_2_farrisbrua.png`
+- `bilde_3_farrisbrua.png`
+- `bilde_4_farrisbrua.png`

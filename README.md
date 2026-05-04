@@ -49,3 +49,4 @@ Siden B43 er en fiktiv sentral og vaktlaget ikke normalt jobber sammen, skal øv
 
 - `Strategi_gjennomforing_ovelsesplanlegging.html` viser produksjonsløpet for 1,5 dag.
 - `scenario_totalforsvar.md` samler scenarioalternativer og anbefalt retning før konkret dreiebok skrives.
+- `plan_alternativ_b_totalforsvar.md` beskriver overordnet løsning for trafikkulykke med militær kolonne og sekundær brann.

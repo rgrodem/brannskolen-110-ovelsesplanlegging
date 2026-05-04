@@ -57,4 +57,5 @@ Siden B43 er en fiktiv sentral og vaktlaget ikke normalt jobber sammen, skal øv
 
 - `produksjon_farrisbrua/` inneholder komplett førsteutkast for scenario E18 Farrisbrua, Larvik.
 - `produksjon_farrisbrua/00_QA_sjekkliste.md` viser maskinell innholdskontroll, DOCX-renderstatus, bildekontroll og PPTX-kontroll.
+- `produksjon_farrisbrua/10_Prompter_fotorealistiske_skadestedsbilder.md` inneholder detaljerte promter for å erstatte skissene med fotorealistiske skadestedsbilder.
 - `tools/build_farrisbrua_package.py`, `tools/build_farrisbrua_presentation.mjs` og `tools/verify_farrisbrua_package.py` kan brukes til å regenerere og kontrollere pakken etter endringer.

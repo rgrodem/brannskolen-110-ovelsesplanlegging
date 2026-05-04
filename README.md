@@ -51,3 +51,4 @@ Siden B43 er en fiktiv sentral og vaktlaget ikke normalt jobber sammen, skal øv
 - `scenario_totalforsvar.md` samler scenarioalternativer og anbefalt retning før konkret dreiebok skrives.
 - `plan_alternativ_b_totalforsvar.md` beskriver overordnet løsning for trafikkulykke med militær kolonne og sekundær brann.
 - `realistisk_110_ovingsmodell.md` justerer scenarioet mot normal 110-arbeidsflyt: nødtelefon, utalarmering, fremkjøring, første ressurs fremme og driftsfase.
+- `leveranseplan_realistisk_ovelse.md` beskriver hva den ferdige øvelsespakken faktisk skal inneholde: ressursplan, innringerplan, dreiebok, spillkort, bilder, sikkerhet, evaluering og presentasjon.

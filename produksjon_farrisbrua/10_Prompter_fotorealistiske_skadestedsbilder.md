@@ -117,6 +117,45 @@ Image 4: first fire resource and ambulance arrived, generic non-branded emergenc
 Style: photorealistic documentary emergency-service training photos, 16:9 horizontal, realistic perspective, muted colors, no logos, no readable license plates, no identifiable faces, no text overlays, no watermark.
 ```
 
+## Videoprompt - 15 sekunder mobilvideo til 110
+
+Bruk denne til å lage en kort video som skal se ut som en realistisk mobilvideo sendt inn til 110 via en løsning som minner om IncidentShare. Videoen skal gi situasjonsforståelse, ikke være dramatisk eller filmatisk.
+
+```text
+Create a 15-second photorealistic handheld smartphone video from the perspective of a civilian caller approaching and filming a traffic incident for the Norwegian 110 emergency dispatch centre through a secure incident video-sharing link. The video should feel like authentic field footage captured on a modern phone, not a movie scene.
+
+Location and continuity:
+E18 Farrisbrua near Larvik, Norway. Modern motorway bridge over water and forested terrain, overcast Nordic daylight, wet or slightly damp asphalt, muted realistic colors. Same fictional incident as the still-image series: a red civilian passenger car has collided with or struck the rear/side of a dark green military logistics truck in a military convoy. Light grey smoke is coming from the red car's engine compartment. Traffic is stopped behind the incident.
+
+Camera style:
+Handheld vertical smartphone video, 9:16 format, natural walking movement, slight hand shake, realistic phone autofocus and exposure changes. The camera operator is walking slowly and carefully along the stopped traffic or road shoulder toward the incident from approximately 50 meters away to approximately 20 meters away. The person filming stays behind stopped vehicles and does not enter the danger area.
+
+Timeline:
+0-3 seconds: The camera starts behind stopped vehicles on E18. The bridge structure, traffic queue and blocked lane are visible. The incident is visible in the distance with faint smoke.
+3-8 seconds: The camera moves slowly closer. The red car and dark green military logistics truck become clearer. Light smoke from the car's engine compartment is visible. A few bystanders are seen at a safe distance, with faces turned away or blurred by distance.
+8-12 seconds: The camera pauses briefly and pans slightly from the traffic queue to the damaged vehicles, giving 110 a better overview of lane blockage, vehicle position and smoke development.
+12-15 seconds: The camera stops at a safe distance. The final view holds steady enough to show the red car, the military truck, stopped traffic, light smoke and the bridge environment.
+
+Operational realism:
+No emergency vehicles have arrived yet. No visible flames, no explosion, no weapons, no ammunition, no panic crowd. The situation should look serious but manageable and realistic for an initial 110 caller video. The video should support emergency dispatch situational awareness: vehicle type, approximate location, smoke, traffic blockage and safe access.
+
+Safety and privacy constraints:
+No gore, no blood, no dead bodies, no visible severe injuries, no identifiable faces, no readable license plates, no real emergency service logos, no military insignia, no brand logos, no on-screen text, no subtitles, no watermark. Do not show the person filming entering traffic danger or standing between vehicles.
+
+Visual quality:
+Photorealistic, documentary realism, natural Nordic daylight, real-world physics, realistic vehicle damage, realistic smoke behavior, no cinematic color grading, no dramatic music-video style, no CGI look, no cartoon style, no artificial camera drone movement.
+```
+
+Negativ prompt for video:
+
+```text
+gore, blood, dead body, severe injury, identifiable face, readable license plate, real logos, military insignia, weapons, ammunition, explosion, fireball, terrorism, war scene, panic crowd, police chase, helicopter, night, storm, snow, cinematic movie shot, drone shot, perfectly smooth camera, action movie, news overlay, subtitles, text, watermark, blurry low quality, cartoon, CGI, toy-like vehicles, unrealistic bridge geometry
+```
+
+Foreslått eksportnavn:
+
+- `video_1_farrisbrua_incidentshare_15sek.mp4`
+
 ## Filnavn ved eksport
 
 Bruk disse filnavnene når bildene eksporteres og legges inn i øvelsespakken:

@@ -14,6 +14,7 @@ Repoet er offentlig, slik at alle med lenken kan lese innholdet. Skrivetilgang g
 
 ### Produksjonspakke Farrisbrua
 
+0. [Flytskjema for gjennomføring](flytskjema_gjennomforing.html)
 1. [QA-sjekkliste](produksjon_farrisbrua/00_QA_sjekkliste.md)
 2. [Øvelsesbeskrivelse](produksjon_farrisbrua/01_Ovelsesbeskrivelse_B43_Farrisbrua.docx)
 3. [Ressursplan](produksjon_farrisbrua/02_Ressursplan_B43_Farrisbrua.docx)

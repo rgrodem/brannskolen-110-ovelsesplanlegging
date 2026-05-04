@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flytskjema for gjennomføring - B43 Farrisbrua</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172026;
+      --muted: #5b6670;
+      --line: #d8dee4;
+      --paper: #f6f7f8;
+      --panel: #ffffff;
+      --accent: #b42318;
+      --accent-dark: #7f1d1d;
+      --teal: #0f766e;
+      --blue: #1d4ed8;
+      --amber: #b45309;
+      --green: #047857;
+      --steel: #334155;
+      --shadow: 0 14px 36px rgba(23, 32, 38, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .topbar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar .wrap {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand strong {
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    nav a,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--steel);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    nav a:hover,
+    .button:hover {
+      border-color: #aeb7c2;
+      background: #f9fafb;
+    }
+
+    header.hero {
+      padding: 34px 0 18px;
+    }
+
+    .intro {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 26px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.08;
+      letter-spacing: 0;
+      margin-bottom: 12px;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 820px;
+      font-size: 17px;
+      margin-bottom: 18px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .meta li {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f8fafc;
+      color: var(--steel);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 18px 0 30px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: 24px;
+      letter-spacing: 0;
+      margin-bottom: 5px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 780px;
+      margin-bottom: 0;
+    }
+
+    .lane {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .lane-label {
+      position: sticky;
+      top: 82px;
+      align-self: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 14px;
+      box-shadow: 0 1px 0 rgba(23, 32, 38, 0.04);
+    }
+
+    .lane-label strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .lane-label span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .step {
+      position: relative;
+      min-height: 184px;
+      padding: 15px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 1px 0 rgba(23, 32, 38, 0.04);
+    }
+
+    .step::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: -13px;
+      transform: translateY(-50%);
+      color: #8a94a1;
+      font-weight: 800;
+      font-size: 22px;
+      z-index: 2;
+    }
+
+    .step:nth-child(4n)::after,
+    .step.last::after {
+      display: none;
+    }
+
+    .num {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      background: #fef2f2;
+      color: var(--accent);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .step h3 {
+      font-size: 17px;
+      letter-spacing: 0;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .step ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--steel);
+      font-size: 13px;
+    }
+
+    .step li + li {
+      margin-top: 4px;
+    }
+
+    .decision {
+      border-color: #f2c572;
+      background: #fffaf0;
+    }
+
+    .decision .num {
+      background: #fff1e6;
+      color: var(--amber);
+    }
+
+    .green {
+      border-color: #a7f3d0;
+      background: #f0fdf4;
+    }
+
+    .green .num {
+      background: #dcfce7;
+      color: var(--green);
+    }
+
+    .blue {
+      border-color: #bfdbfe;
+      background: #eff6ff;
+    }
+
+    .blue .num {
+      background: #dbeafe;
+      color: var(--blue);
+    }
+
+    .wide {
+      grid-column: span 2;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .check {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .check strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--teal);
+      font-size: 15px;
+    }
+
+    .check ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--steel);
+      font-size: 13px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer {
+      margin-top: 22px;
+      padding: 26px 0 40px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .lane {
+        grid-template-columns: 1fr;
+      }
+
+      .lane-label {
+        position: static;
+      }
+
+      .flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .step:nth-child(4n)::after {
+        display: block;
+      }
+
+      .step:nth-child(2n)::after,
+      .step.last::after {
+        display: none;
+      }
+
+      .checklist {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .wrap {
+        width: min(100% - 22px, 1180px);
+      }
+
+      .topbar .wrap {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 0;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      .intro {
+        padding: 20px;
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .step::after,
+      .step:nth-child(4n)::after,
+      .step:nth-child(2n)::after {
+        content: "↓";
+        display: block;
+        top: auto;
+        right: 50%;
+        bottom: -19px;
+        transform: translateX(50%);
+      }
+
+      .step.last::after {
+        display: none;
+      }
+
+      .wide {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand">
+        <strong>B43 Farrisbrua</strong>
+        <span>Flyt for planlegging og gjennomføring</span>
+      </div>
+      <nav aria-label="Navigasjon">
+        <a href="index.html">Dokumentportal</a>
+        <a href="#planlegging">Planlegging</a>
+        <a href="#ovelse">Øvelse</a>
+        <a href="#kontroll">Kontrollpunkter</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="intro">
+        <h1>Flytskjema for gjennomføring</h1>
+        <p class="lead">Denne siden viser først hvordan gruppen kan gå gjennom planverket og låse øvelsen for produksjon. Deretter viser den en praktisk flyt for selve øvelsesdagen, fra klargjøring til evaluering.</p>
+        <ul class="meta">
+          <li>1,5 dag planlegging</li>
+          <li>90 minutter action time</li>
+          <li>Før-brief og AAR</li>
+          <li>Realistisk 110-arbeidsflyt</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="planlegging">
+      <div class="section-head">
+        <div>
+          <h2>Flyt 1: Gjennomføring av planlegging</h2>
+          <p>Bruk denne som agenda når gruppen går gjennom planen før detaljproduksjon og kvalitetssikring.</p>
+        </div>
+      </div>
+
+      <div class="lane">
+        <aside class="lane-label">
+          <strong>Planleggingsmøte</strong>
+          <span>Målet er å få en felles, godkjent øvelsespakke som kan kjøres av en annen gruppe.</span>
+        </aside>
+
+        <div class="flow">
+          <article class="step">
+            <span class="num">1</span>
+            <h3>Sett rammen</h3>
+            <p>Avklar hva som skal leveres og hvilken øvelse pakken skal støtte.</p>
+            <ul>
+              <li>B43 i Stavern</li>
+              <li>3 OP + 1 VL</li>
+              <li>90 minutter action time</li>
+            </ul>
+          </article>
+
+          <article class="step">
+            <span class="num">2</span>
+            <h3>Les kursmålet</h3>
+            <p>Koble arbeidet til 2.2.12: planlegging, gjennomføring og systematisk evaluering.</p>
+            <ul>
+              <li>Hvilken teori bruker vi?</li>
+              <li>Hva skal gruppen vise at den kan?</li>
+            </ul>
+          </article>
+
+          <article class="step">
+            <span class="num">3</span>
+            <h3>Godkjenn scenario</h3>
+            <p>Kontroller at Farrisbrua-scenarioet er realistisk for 110 og ikke bare laget for kaos.</p>
+            <ul>
+              <li>Nødtelefon og trippelvarsling</li>
+              <li>Fremkjøring og avklaringer</li>
+              <li>Overgang til driftsfase</li>
+            </ul>
+          </article>
+
+          <article class="step">
+            <span class="num">4</span>
+            <h3>Avgrens øvingsmål</h3>
+            <p>Velg få mål som passer en fiktiv sentral og ukjent kontrollrom.</p>
+            <ul>
+              <li>Situasjonsforståelse</li>
+              <li>Rollefordeling</li>
+              <li>Samvirke og struktur</li>
+            </ul>
+          </article>
+
+          <article class="step">
+            <span class="num">5</span>
+            <h3>Gå gjennom roller</h3>
+            <p>Sjekk at spillstab, markører og motspill har tydelige oppgaver.</p>
+            <ul>
+              <li>Melder 1, 2 og 3</li>
+              <li>AMK, politi og VTS</li>
+              <li>01/09/UL/IL som markører</li>
+            </ul>
+          </article>
+
+          <article class="step">
+            <span class="num">6</span>
+            <h3>Test dreieboken</h3>
+            <p>Gå tidslinjen høyt i gruppen og sjekk at innspillene kommer i riktig rekkefølge.</p>
+            <ul>
+              <li>Initialfase</li>
+              <li>Fremkjøringsfase</li>
+              <li>Driftsfase</li>
+            </ul>
+          </article>
+
+          <article class="step">
+            <span class="num">7</span>
+            <h3>Planlegg evaluering</h3>
+            <p>Avklar hvem som observerer hva, og hvordan funn tas inn i AAR.</p>
+            <ul>
+              <li>ODCR-observasjon</li>
+              <li>Konkrete indikatorer</li>
+              <li>Felles læringspunkter</li>
+            </ul>
+          </article>
+
+          <article class="step decision">
+            <span class="num">?</span>
+            <h3>Beslutningsport</h3>
+            <p>Er øvelsen klar nok til å produseres og deles?</p>
+            <ul>
+              <li>Ja: lås versjon og klargjør</li>
+              <li>Nei: korriger dokumentene og ta ny sjekk</li>
+            </ul>
+          </article>
+
+          <article class="step green wide last">
+            <span class="num">✓</span>
+            <h3>Ferdig planpakke</h3>
+            <p>Gruppen har en samlet pakke som kan brukes av de andre: presentasjon, dreiebok, spillkort, ressursplan, sikkerhetsinstruks, bildepakkestøtte og evalueringsopplegg.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ovelse">
+      <div class="section-head">
+        <div>
+          <h2>Flyt 2: Gjennomføring av øvelsen</h2>
+          <p>Bruk denne som operativ flyt når øvelsen skal kjøres i kontrollrommet.</p>
+        </div>
+      </div>
+
+      <div class="lane">
+        <aside class="lane-label">
+          <strong>Øvelsesdag</strong>
+          <span>Målet er rolig, styrt gjennomføring med realistisk 110-arbeidsflyt og tydelig evaluering etterpå.</span>
+        </aside>
+
+        <div class="flow">
+          <article class="step blue">
+            <span class="num">A</span>
+            <h3>Klargjør rom og spillstab</h3>
+            <p>Sjekk kontrollrom, telefoner, ICCS, terminaler, roller, bilder og videoinnspill.</p>
+            <ul>
+              <li>Teknisk sjekk</li>
+              <li>Spillstabens egen brief</li>
+              <li>Stoppord og sikkerhet</li>
+            </ul>
+          </article>
+
+          <article class="step blue">
+            <span class="num">B</span>
+            <h3>Før-brief øvende lag</h3>
+            <p>Gi rammer, øvingsmål og spilleregler uten å røpe dreieboken.</p>
+            <ul>
+              <li>Hva øves</li>
+              <li>Hva evalueres ikke</li>
+              <li>Hvordan avbryte</li>
+            </ul>
+          </article>
+
+          <article class="step">
+            <span class="num">0</span>
+            <h3>Spillstart</h3>
+            <p>Melder 1 ringer inn fra Farrisbrua og beskriver alvorlig trafikkhendelse med røyk.</p>
+            <ul>
+              <li>Nødtelefon mottas</li>
+              <li>Adresse/sted avklares</li>
+              <li>Trippelvarsling vurderes</li>
+            </ul>
+          </article>
+
+          <article class="step">
+            <span class="num">1</span>
+            <h3>Initialfase</h3>
+            <p>110 håndterer første melding, utalarmering og samvirkekontakt.</p>
+            <ul>
+              <li>Utalarmering 70-110 sekunder</li>
+              <li>AMK og politi i linje</li>
+              <li>Melder 2 og 3 avklares kort</li>
+            </ul>
+          </article>
+
+          <article class="step">
+            <span class="num">2</span>
+            <h3>Fremkjøring</h3>
+            <p>Ressurser er på vei. 110 bygger felles situasjonsforståelse og følger opp nye opplysninger.</p>
+            <ul>
+              <li>VTS/trafikkbilde</li>
+              <li>Tilkomst og kø</li>
+              <li>Bilde/video fra melder</li>
+            </ul>
+          </article>
+
+          <article class="step">
+            <span class="num">3</span>
+            <h3>Første ressurs fremme</h3>
+            <p>Markør melder første situasjonsrapport, og 110 går gradvis over i driftsfase.</p>
+            <ul>
+              <li>Skadestedsledelse etableres</li>
+              <li>Behov for flere ressurser vurderes</li>
+              <li>Informasjonsdeling struktureres</li>
+            </ul>
+          </article>
+
+          <article class="step">
+            <span class="num">4</span>
+            <h3>Driftsfase</h3>
+            <p>Øvende lag følger opp samvirke, ressursoversikt og informasjonsbehov uten å miste struktur.</p>
+            <ul>
+              <li>Statusintervall</li>
+              <li>Rollefordeling OP/VL</li>
+              <li>AMK, politi og VTS</li>
+            </ul>
+          </article>
+
+          <article class="step decision">
+            <span class="num">?</span>
+            <h3>Styringspunkt</h3>
+            <p>Spillstab vurderer om øvingsmålene blir synlige nok.</p>
+            <ul>
+              <li>For lett: legg inn presisering</li>
+              <li>For tungt: reduser innspill</li>
+              <li>Utrygt: stopp øvelse</li>
+            </ul>
+          </article>
+
+          <article class="step">
+            <span class="num">5</span>
+            <h3>Avslutt spill</h3>
+            <p>Øvingsleder avslutter rundt 90 minutter eller når læringspunktene er synlige.</p>
+            <ul>
+              <li>STOPP ØVELSE B43</li>
+              <li>Samle raske observasjoner</li>
+              <li>Skill tydelig mellom spill og evaluering</li>
+            </ul>
+          </article>
+
+          <article class="step green">
+            <span class="num">6</span>
+            <h3>Hotwash</h3>
+            <p>Kort umiddelbar runde før mer strukturert AAR.</p>
+            <ul>
+              <li>Hva skjedde?</li>
+              <li>Hva fungerte?</li>
+              <li>Hva bør tas med videre?</li>
+            </ul>
+          </article>
+
+          <article class="step green">
+            <span class="num">7</span>
+            <h3>AAR/evaluering</h3>
+            <p>Gå gjennom observasjoner mot mål og indikatorer.</p>
+            <ul>
+              <li>Fakta først</li>
+              <li>Deretter analyse</li>
+              <li>Til slutt læringstiltak</li>
+            </ul>
+          </article>
+
+          <article class="step green last">
+            <span class="num">✓</span>
+            <h3>Lukk øvelsen</h3>
+            <p>Oppsummer læringspunkter og eventuelle endringer i dokumentpakken.</p>
+            <ul>
+              <li>Hva skal justeres?</li>
+              <li>Hva kan gjenbrukes?</li>
+              <li>Hva leveres til kurset?</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontroll">
+      <div class="section-head">
+        <div>
+          <h2>Kontrollpunkter før dere går videre</h2>
+          <p>Tre korte sjekker som holder arbeidet realistisk og innenfor kursmålet.</p>
+        </div>
+      </div>
+
+      <div class="checklist">
+        <div class="check">
+          <strong>Planen er god nok når</strong>
+          <ul>
+            <li>øvingsmålene er få og målbare</li>
+            <li>scenarioet tester målene</li>
+            <li>rolle- og ressursplanen er forståelig</li>
+          </ul>
+        </div>
+
+        <div class="check">
+          <strong>Øvelsen er realistisk når</strong>
+          <ul>
+            <li>initial 110-flyt er troverdig</li>
+            <li>motspill gir nødvendig informasjon</li>
+            <li>driftsfasen ikke blir kunstig kaos</li>
+          </ul>
+        </div>
+
+        <div class="check">
+          <strong>Evalueringen virker når</strong>
+          <ul>
+            <li>observatører vet hva de ser etter</li>
+            <li>AAR skiller fakta, vurdering og læring</li>
+            <li>gruppen sitter igjen med konkrete forbedringer</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-head" style="margin-top: 22px;">
+        <div>
+          <h2>Direkte lenker</h2>
+          <p>Dokumentene som brukes mest sammen med flytskjemaet.</p>
+        </div>
+      </div>
+
+      <div class="links">
+        <a class="button" href="produksjon_farrisbrua/01_Ovelsesbeskrivelse_B43_Farrisbrua.docx">Øvelsesbeskrivelse</a>
+        <a class="button" href="produksjon_farrisbrua/03_Innringerplan_og_spillkort_B43_Farrisbrua.docx">Innringerplan</a>
+        <a class="button" href="produksjon_farrisbrua/04_Dreiebok_B43_Farrisbrua.docx">Dreiebok</a>
+        <a class="button" href="produksjon_farrisbrua/06_Evalueringsopplegg_ODCR_AAR_B43_Farrisbrua.docx">Evaluering</a>
+        <a class="button" href="produksjon_farrisbrua/07_Presentasjon_B43_Farrisbrua.pptx">Presentasjon</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Flytskjema for B43 Farrisbrua. Sist oppdatert 4. mai 2026.</p>
+    </div>
+  </footer>
+</body>
+</html>

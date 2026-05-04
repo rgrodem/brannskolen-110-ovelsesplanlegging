@@ -5,10 +5,10 @@ Dette repoet samler arbeidet med å planlegge, gjennomføre og evaluere en spill
 ## Deleside
 
 - `index.html` er samlet dokumentportal for gruppen.
-- GitHub Pages-lenke når publisering er aktivert: `https://rgrodem.github.io/brannskolen-110-ovelsesplanlegging/`
+- GitHub Pages-lenke: `https://rgrodem.github.io/brannskolen-110-ovelsesplanlegging/`
 - GitHub-repo: `https://github.com/rgrodem/brannskolen-110-ovelsesplanlegging`
 
-GitHub Pages kunne ikke aktiveres mens repoet er privat med nåværende GitHub-plan. Bruk derfor repo-lenken som delbar Git-side for de som får tilgang til repoet. README-en under fungerer som klikkbar dokumentoversikt i GitHub.
+Repoet er offentlig, slik at alle med lenken kan lese innholdet. Skrivetilgang gis ved å legge personer til som collaborators i GitHub, eller ved at de foreslår endringer via pull request.
 
 ## Dokumentportal
 

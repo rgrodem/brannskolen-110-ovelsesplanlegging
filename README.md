@@ -52,3 +52,9 @@ Siden B43 er en fiktiv sentral og vaktlaget ikke normalt jobber sammen, skal øv
 - `plan_alternativ_b_totalforsvar.md` beskriver overordnet løsning for trafikkulykke med militær kolonne og sekundær brann.
 - `realistisk_110_ovingsmodell.md` justerer scenarioet mot normal 110-arbeidsflyt: nødtelefon, utalarmering, fremkjøring, første ressurs fremme og driftsfase.
 - `leveranseplan_realistisk_ovelse.md` beskriver hva den ferdige øvelsespakken faktisk skal inneholde: ressursplan, innringerplan, dreiebok, spillkort, bilder, sikkerhet, evaluering og presentasjon.
+
+## Produksjonsutkast
+
+- `produksjon_farrisbrua/` inneholder komplett førsteutkast for scenario E18 Farrisbrua, Larvik.
+- `produksjon_farrisbrua/00_QA_sjekkliste.md` viser maskinell innholdskontroll, DOCX-renderstatus, bildekontroll og PPTX-kontroll.
+- `tools/build_farrisbrua_package.py`, `tools/build_farrisbrua_presentation.mjs` og `tools/verify_farrisbrua_package.py` kan brukes til å regenerere og kontrollere pakken etter endringer.

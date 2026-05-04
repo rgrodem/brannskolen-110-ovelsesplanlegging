@@ -14,3 +14,6 @@ out/
 
 # Local notes that should not be shared unless explicitly added
 private/
+
+# Generated visual QA pages can be recreated by tools/verify_farrisbrua_package.py
+produksjon_farrisbrua/qa/rendered_docx/

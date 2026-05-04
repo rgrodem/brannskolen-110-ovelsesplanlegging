@@ -1,0 +1,75 @@
+{
+  "scenario": {
+    "title": "Farrisbrua B43",
+    "subtitle": "Trafikkulykke med militær kolonne og sekundær brann/røykutvikling",
+    "sted": "E18 Farrisbrua, Larvik, fiktivt B43-område",
+    "retning": "Retning Oslo/Sandefjord",
+    "sentral": "B43 fiktiv øvelsessentral",
+    "kurssted": "Stavern",
+    "ovede": "4 personer: 3 operatører og 1 vaktleder",
+    "action_time": "ca. 90 minutter",
+    "form": "Spilløvelse i kontrollrom",
+    "dato": "Utkast 04.05.2026"
+  },
+  "documents": [
+    "01_Ovelsesbeskrivelse_B43_Farrisbrua.docx",
+    "02_Ressursplan_B43_Farrisbrua.docx",
+    "03_Innringerplan_og_spillkort_B43_Farrisbrua.docx",
+    "04_Dreiebok_B43_Farrisbrua.docx",
+    "05_Sikkerhetsinstruks_B43_Farrisbrua.docx",
+    "06_Evalueringsopplegg_ODCR_AAR_B43_Farrisbrua.docx",
+    "08_Bildepakke_og_situasjonskort_B43_Farrisbrua.docx"
+  ],
+  "images": [
+    "08_bildepakke\\bilde_1_farrisbrua.png",
+    "08_bildepakke\\bilde_2_farrisbrua.png",
+    "08_bildepakke\\bilde_3_farrisbrua.png",
+    "08_bildepakke\\bilde_4_farrisbrua.png"
+  ],
+  "qa": "00_QA_sjekkliste.md",
+  "all_ok": true,
+  "results": [
+    {
+      "file": "01_Ovelsesbeskrivelse_B43_Farrisbrua.docx",
+      "ok": true,
+      "missing": [],
+      "chars": 3449
+    },
+    {
+      "file": "02_Ressursplan_B43_Farrisbrua.docx",
+      "ok": true,
+      "missing": [],
+      "chars": 2740
+    },
+    {
+      "file": "03_Innringerplan_og_spillkort_B43_Farrisbrua.docx",
+      "ok": true,
+      "missing": [],
+      "chars": 7554
+    },
+    {
+      "file": "04_Dreiebok_B43_Farrisbrua.docx",
+      "ok": true,
+      "missing": [],
+      "chars": 4354
+    },
+    {
+      "file": "05_Sikkerhetsinstruks_B43_Farrisbrua.docx",
+      "ok": true,
+      "missing": [],
+      "chars": 2516
+    },
+    {
+      "file": "06_Evalueringsopplegg_ODCR_AAR_B43_Farrisbrua.docx",
+      "ok": true,
+      "missing": [],
+      "chars": 1879
+    },
+    {
+      "file": "08_Bildepakke_og_situasjonskort_B43_Farrisbrua.docx",
+      "ok": true,
+      "missing": [],
+      "chars": 943
+    }
+  ]
+}

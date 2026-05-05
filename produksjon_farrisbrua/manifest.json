@@ -18,7 +18,8 @@
     "04_Dreiebok_B43_Farrisbrua.docx",
     "05_Sikkerhetsinstruks_B43_Farrisbrua.docx",
     "06_Evalueringsopplegg_ODCR_AAR_B43_Farrisbrua.docx",
-    "08_Bildepakke_og_situasjonskort_B43_Farrisbrua.docx"
+    "08_Bildepakke_og_situasjonskort_B43_Farrisbrua.docx",
+    "11_Printpakke_gjennomforing_B43_Farrisbrua.docx"
   ],
   "images": [
     "08_bildepakke\\bilde_1_farrisbrua.png",
@@ -70,6 +71,12 @@
       "ok": true,
       "missing": [],
       "chars": 1077
+    },
+    {
+      "file": "11_Printpakke_gjennomforing_B43_Farrisbrua.docx",
+      "ok": true,
+      "missing": [],
+      "chars": 15411
     }
   ]
 }

@@ -268,6 +268,7 @@ REQUIRED = {
     "05_Sikkerhetsinstruks_B43_Farrisbrua.docx": ["STOPP ØVELSE B43", "reell hendelse", "telefonbruk", "radiobruk"],
     "06_Evalueringsopplegg_ODCR_AAR_B43_Farrisbrua.docx": ["ODCR", "AAR", "Hva forventet vi", "rollefordeling", "situasjonsforståelse"],
     "08_Bildepakke_og_situasjonskort_B43_Farrisbrua.docx": ["Situasjonsbilde", "Bilde 1", "Bilde 4", "Farrisbrua"],
+    "11_Printpakke_gjennomforing_B43_Farrisbrua.docx": ["PRINTPAKKE", "DREIEBOK", "SPILLKORT", "Rune", "Vibecke", "STOPP ØVELSE B43"],
 }
 
 
@@ -329,6 +330,13 @@ def add_bullets(doc, items, level=0):
     for item in items:
         p = doc.add_paragraph(style="List Bullet" if level == 0 else "List Bullet 2")
         p.add_run(str(item))
+
+
+def set_table_widths(table, widths_cm):
+    for row in table.rows:
+        for idx, width in enumerate(widths_cm):
+            if idx < len(row.cells):
+                row.cells[idx].width = Cm(width)
 
 
 def base_doc(title, subtitle=None, landscape=False):
@@ -800,6 +808,180 @@ def build_bilde_doc(images):
     return save_doc(doc, "08_Bildepakke_og_situasjonskort_B43_Farrisbrua.docx")
 
 
+def add_print_section(doc, title, note=None):
+    doc.add_page_break()
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p_pr = p._p.get_or_add_pPr()
+    shd = OxmlElement("w:shd")
+    shd.set(qn("w:fill"), "203864")
+    p_pr.append(shd)
+    r = p.add_run(title)
+    r.bold = True
+    r.font.size = Pt(26)
+    r.font.color.rgb = RGBColor(255, 255, 255)
+    if note:
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        r = p.add_run(note)
+        r.italic = True
+        r.font.size = Pt(10)
+
+
+def add_compact_table(doc, headers, rows, widths=None, font_size=7.2):
+    table = add_table(doc, headers, rows)
+    if widths:
+        set_table_widths(table, widths)
+    for row in table.rows:
+        for cell in row.cells:
+            for p in cell.paragraphs:
+                p.paragraph_format.space_after = Pt(1)
+                p.paragraph_format.line_spacing = 1.0
+                for r in p.runs:
+                    r.font.size = Pt(font_size)
+    return table
+
+
+def add_compact_card(doc, title, rows):
+    doc.add_heading(title, level=2)
+    return add_compact_table(doc, ["Felt", "Innhold"], rows, widths=[4.2, 22.0], font_size=7.7)
+
+
+def build_printpakke(images):
+    doc = Document()
+    sec = doc.sections[0]
+    sec.orientation = WD_ORIENT.LANDSCAPE
+    sec.page_width, sec.page_height = sec.page_height, sec.page_width
+    sec.top_margin = Cm(1.0)
+    sec.bottom_margin = Cm(1.0)
+    sec.left_margin = Cm(1.0)
+    sec.right_margin = Cm(1.0)
+
+    styles = doc.styles
+    styles["Normal"].font.name = "Arial"
+    styles["Normal"].font.size = Pt(8.8)
+    styles["Heading 1"].font.name = "Arial"
+    styles["Heading 1"].font.size = Pt(16)
+    styles["Heading 1"].font.bold = True
+    styles["Heading 1"].font.color.rgb = RGBColor(32, 56, 100)
+    styles["Heading 2"].font.name = "Arial"
+    styles["Heading 2"].font.size = Pt(11)
+    styles["Heading 2"].font.bold = True
+    styles["Heading 2"].font.color.rgb = RGBColor(160, 48, 42)
+
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r = p.add_run("PRINTPAKKE - GJENNOMFØRING")
+    r.bold = True
+    r.font.size = Pt(26)
+    r.font.color.rgb = RGBColor(32, 56, 100)
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r = p.add_run("Farrisbrua B43 - 110 øvelse")
+    r.bold = True
+    r.font.size = Pt(16)
+    r.font.color.rgb = RGBColor(160, 48, 42)
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r = p.add_run("Print 8 eksemplarer. Brukes av spillstab og observatører. Skal ikke deles med de øvende før øvelsen er ferdig.")
+    r.font.size = Pt(10)
+    r.italic = True
+
+    add_compact_table(doc, ["Punkt", "Innhold"], [
+        ["Scenario", "Trafikkulykke på E18 Farrisbrua, Larvik. Rød personbil mot militært logistikkjøretøy. Røyk fra motorrom, mulig fastklemt/innesperret person, trafikk blokkert."],
+        ["Øvende", "Ett vaktlag: 3 operatører og 1 vaktleder."],
+        ["Action time", "Ca. 90 minutter. Øvelsen fryses rundt 85 minutter for sluttstatus og overgang til AAR."],
+        ["Stoppkode", "STOPP ØVELSE B43. Ved reell hendelse stoppes øvelsen umiddelbart."],
+        ["Hovedprinsipp", "Spillstab styrer realistisk, lavdramatisk utvikling. Ikke eskaler til stor hendelse uten beslutning fra øvingsleder."],
+    ], widths=[4.0, 22.0], font_size=8.2)
+
+    doc.add_heading("Hurtig mål- og rolleoversikt", level=1)
+    add_compact_table(doc, ["ID", "Læringsmål", "Tegn på måloppnåelse"], [[o["id"], o["mål"], o["indikator"]] for o in OBJECTIVES], widths=[1.5, 12.0, 12.5], font_size=7.4)
+    add_compact_table(doc, ["Person", "Gruppe", "Plassering", "Rolle", "Primæransvar"], ROLE_ALLOCATION, widths=[3.0, 2.5, 3.2, 5.5, 11.8], font_size=7.4)
+
+    doc.add_heading("Praktisk bruk under gjennomføring", level=1)
+    add_compact_table(doc, ["Kanal/tema", "Bruk", "Merknad"], [
+        ["Nødtelefon", "Tre initiale innringere", "Innringer 1 skal trippelvarsles. Innringer 2 og 3 avsluttes kort."],
+        ["ICCS/trippel", "AMK og politi", "Bruk tilgjengelig øvingsoppsett. Ikke bruk reelle eksterne nummer."],
+        ["Telefon", "Politi, AMK, VTS og andre støtteaktører", "Motspill holder seg til spillkort og dreiebok."],
+        ["Terminal/Nødnett", "01/09, UL og IL", "Mats spiller brannressurser etter dreiebok."],
+        ["Bilder", "Felles situasjonsforståelse", "Bildene brukes som referanse i spillstab. Ikke vis samlet til de øvende ved start."],
+    ], widths=[5.0, 8.0, 13.0], font_size=7.6)
+
+    doc.add_heading("Bildeark - felles referanse", level=1)
+    doc.add_paragraph(
+        "Brukes som felles visuell referanse for spillstab. Bildene skal støtte samme situasjonsforståelse, "
+        "men deles bare med de øvende når dreieboken åpner for det."
+    )
+    contact_sheet = QA / "bildepakke_contactsheet.png"
+    if contact_sheet.exists():
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.add_run().add_picture(str(contact_sheet), width=Inches(5.6))
+    else:
+        for idx, img in enumerate(images, 1):
+            p = doc.add_paragraph()
+            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            p.add_run(f"Bilde {idx}").bold = True
+            doc.add_picture(str(img), width=Inches(5.2))
+            doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+    add_print_section(doc, "DREIEBOK", "Følg tidspunktene fleksibelt. Målet er læring, ikke å tvinge alle innspill hvis vaktlaget allerede har løst behovet.")
+    add_compact_table(doc,
+        ["Tid", "Til", "Fra", "Hendelse/episode", "Mål", "Forventet handling", "Merknad evaluering"],
+        TIMELINE,
+        widths=[1.8, 3.0, 3.0, 8.8, 2.2, 5.8, 5.4],
+        font_size=6.4,
+    )
+
+    add_print_section(doc, "SPILLKORT", "Denne delen er for innringere og motspillere. Hold dere til kortene. Ikke legg inn ny dramatikk.")
+    doc.add_heading("Innringeroversikt", level=1)
+    add_compact_table(doc, ["Nr.", "Tid", "Spilles av", "Rolle", "Kanal", "Hovedfunksjon"], [
+        [c["nr"], c["tid"], c["spilles_av"], c["rolle"], c["kanal"], c["forventet"]] for c in CALLERS
+    ], widths=[1.0, 1.7, 3.0, 7.2, 3.0, 10.0], font_size=7.0)
+
+    for c in CALLERS:
+        add_compact_card(doc, f"Innringer {c['nr']}: {c['navn']} - {c['spilles_av']}", [
+            ["Rolle/tid", f"{c['rolle']} / {c['tid']} / {c['kanal']}"],
+            ["Uttrykk", c["uttrykk"]],
+            ["Første melding", c["førstemelding"]],
+            ["Gir frivillig", "\n".join(c["frivillig"])],
+            ["Gir ved spørsmål", "\n".join(c["ved_spørsmål"])],
+            ["Usikkerhet", c["usikkerhet"]],
+            ["Avslutning", c["avslutning"]],
+            ["Forventet 110", c["forventet"]],
+        ])
+
+    add_print_section(doc, "SPILLKORT - MOTSPILL", "Rollene under spilles som korte, presise innspill. Alle avvik avklares med Rune.")
+    for s in SPILLCARDS:
+        add_compact_card(doc, f"{s['rolle']} - {s['spiller']}", [
+            ["Mål med rollen", s["mål"]],
+            ["Rollen vet", s["vet"]],
+            ["Rollen vet ikke", s["vet_ikke"]],
+            ["Skal ikke improvisere på", s["ikke_impro"]],
+            ["Forventet respons", s["forventet"]],
+        ])
+
+    add_print_section(doc, "OBSERVASJON OG AAR", "Brukes av observatørene og ved kort evaluering etter øvelsen.")
+    add_compact_table(doc, ["Mål", "Observeres", "Notater"], [
+        ["D1", "Første meldingsmottak, posisjonering, tidlig utalarmering og trippelvarsling.", ""],
+        ["D2", "Felles situasjonsforståelse mens ressurser er på vei.", ""],
+        ["D3", "Samvirke med AMK, politi og VTS. Skiller kjent/ukjent informasjon.", ""],
+        ["D4", "VL fordeler oppgaver og sikrer overgang fra akuttfase til driftsfase.", ""],
+        ["D5", "Sluttstatus: hva har skjedd, hva er gjort, hvem er varslet, hva gjenstår.", ""],
+    ], widths=[1.4, 13.0, 11.5], font_size=7.4)
+    add_compact_table(doc, ["AAR-spørsmål", "Stikkord"], [
+        ["Hva forventet vi ville skje?", ""],
+        ["Hva skjedde?", ""],
+        ["Hvorfor ble det slik?", ""],
+        ["Hva gikk bra, og hvorfor?", ""],
+        ["Hva kan forbedres, og hvordan?", ""],
+    ], widths=[8.0, 18.0], font_size=8.0)
+    add_compact_table(doc, ["Fortsette å gjøre", "Slutte å gjøre", "Begynne å gjøre"], [["", "", ""], ["", "", ""], ["", "", ""]], widths=[8.6, 8.6, 8.6], font_size=8.0)
+
+    return save_doc(doc, "11_Printpakke_gjennomforing_B43_Farrisbrua.docx")
+
+
 def extract_docx_text(path):
     doc = Document(path)
     parts = []
@@ -867,6 +1049,7 @@ def main():
         build_sikkerhet(),
         build_evaluering(),
         build_bilde_doc(images),
+        build_printpakke(images),
     ]
     results = [verify_doc(p) for p in paths]
     write_qa(results, images)

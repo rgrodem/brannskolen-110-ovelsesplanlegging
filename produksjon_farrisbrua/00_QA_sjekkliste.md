@@ -9,6 +9,7 @@
 - OK: `05_Sikkerhetsinstruks_B43_Farrisbrua.docx` (2515 tegn)
 - OK: `06_Evalueringsopplegg_ODCR_AAR_B43_Farrisbrua.docx` (1878 tegn)
 - OK: `08_Bildepakke_og_situasjonskort_B43_Farrisbrua.docx` (1077 tegn)
+- OK: `11_Printpakke_gjennomforing_B43_Farrisbrua.docx` (15411 tegn)
 
 ## DOCX-render
 
@@ -19,6 +20,7 @@
 - OK: `05_Sikkerhetsinstruks_B43_Farrisbrua.docx` - 2 renderede sider
 - OK: `06_Evalueringsopplegg_ODCR_AAR_B43_Farrisbrua.docx` - 2 renderede sider
 - OK: `08_Bildepakke_og_situasjonskort_B43_Farrisbrua.docx` - 5 renderede sider
+- OK: `11_Printpakke_gjennomforing_B43_Farrisbrua.docx` - 9 renderede sider
 
 Merknad: artifact-tool returnerte exitkode 1 uten stderr, men produserte PNG-sider for alle DOCX-dokumenter.
 - Visuelt DOCX-kontaktark: `produksjon_farrisbrua/qa/rendered_docx_all_pages_contactsheet.png`

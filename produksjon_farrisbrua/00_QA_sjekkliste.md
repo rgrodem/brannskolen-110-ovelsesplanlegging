@@ -3,8 +3,8 @@
 ## Dokumentkontroll
 
 - OK: `01_Ovelsesbeskrivelse_B43_Farrisbrua.docx` (3449 tegn)
-- OK: `02_Ressursplan_B43_Farrisbrua.docx` (2739 tegn)
-- OK: `03_Innringerplan_og_spillkort_B43_Farrisbrua.docx` (8409 tegn)
+- OK: `02_Ressursplan_B43_Farrisbrua.docx` (3919 tegn)
+- OK: `03_Innringerplan_og_spillkort_B43_Farrisbrua.docx` (8478 tegn)
 - OK: `04_Dreiebok_B43_Farrisbrua.docx` (4353 tegn)
 - OK: `05_Sikkerhetsinstruks_B43_Farrisbrua.docx` (2515 tegn)
 - OK: `06_Evalueringsopplegg_ODCR_AAR_B43_Farrisbrua.docx` (1878 tegn)
@@ -13,7 +13,7 @@
 ## DOCX-render
 
 - OK: `01_Ovelsesbeskrivelse_B43_Farrisbrua.docx` - 2 renderede sider
-- OK: `02_Ressursplan_B43_Farrisbrua.docx` - 2 renderede sider
+- OK: `02_Ressursplan_B43_Farrisbrua.docx` - 3 renderede sider
 - OK: `03_Innringerplan_og_spillkort_B43_Farrisbrua.docx` - 8 renderede sider
 - OK: `04_Dreiebok_B43_Farrisbrua.docx` - 2 renderede sider
 - OK: `05_Sikkerhetsinstruks_B43_Farrisbrua.docx` - 2 renderede sider

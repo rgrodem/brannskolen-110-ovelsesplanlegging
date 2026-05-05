@@ -68,6 +68,7 @@ CALLERS = [
         "tid": "00:00",
         "rolle": "Første melder, bilfører rett bak ulykken",
         "navn": "Marius Eik",
+        "spilles_av": "Vibecke",
         "kanal": "Nødtelefon 110",
         "uttrykk": "Stresset, men samarbeidsvillig. Puster raskt, snakker fort og avbryter seg selv.",
         "førstemelding": "Det har krasjet på Farrisbrua på E18 ved Larvik, retning Oslo. Det ryker fra en personbil som har kjørt inn i et militært kjøretøy. Jeg tror det er folk skadet.",
@@ -93,6 +94,7 @@ CALLERS = [
         "tid": "03:30",
         "rolle": "Melder fra avstand, ser røyk fra nærområdet",
         "navn": "Anne Løwe",
+        "spilles_av": "Benjamin",
         "kanal": "Nødtelefon 110",
         "uttrykk": "Rolig, bekymret, har begrenset informasjon.",
         "førstemelding": "Jeg ser røyk oppe ved Farrisbrua. Det står mye biler stille. Jeg vet ikke hva som har skjedd.",
@@ -114,6 +116,7 @@ CALLERS = [
         "tid": "05:30",
         "rolle": "Melder i kø fra motsatt/tilstøtende kjørefelt",
         "navn": "Sivert Holm",
+        "spilles_av": "Benjamin",
         "kanal": "Nødtelefon 110",
         "uttrykk": "Utålmodig og litt irritert, men ikke panisk.",
         "førstemelding": "Det er full stopp ved Farrisbrua. Jeg ser blålys langt fremme og noen militære biler. Er dette meldt?",
@@ -148,6 +151,18 @@ RESOURCES = [
 ]
 
 
+ROLE_ALLOCATION = [
+    ["Rune", "Gruppe 3", "Spillstab", "Øvingsleder / spill-leder", "Start/stopp, tempo, avvik fra dreiebok og overgang til AAR."],
+    ["Mats", "Gruppe 3", "Spillstab", "Brannressurser / teknisk spill", "Spiller B43-01, B43-09/UL og IL brann etter dreiebok."],
+    ["Siw", "Gruppe 3", "Kontrollrom", "Observatør 1", "D1/D3: mottak, utalarmering, trippelvarsling og samvirke."],
+    ["Tom Christian", "Gruppe 3", "Kontrollrom", "Observatør 2", "D2/D4/D5: situasjonsbilde, rollefordeling, driftsfase og sluttstatus."],
+    ["Vibecke", "Gruppe 1", "Spillstab", "Første melder / bildestøtte", "Spiller innringer 1 og støtter bilde 1-2 etter avtale."],
+    ["Benjamin", "Gruppe 1", "Spillstab", "Andre/tredje melder + VTS", "Spiller innringer 2 og 3, samt VTS ved trafikkavklaringer."],
+    ["Johannes", "Gruppe 1", "Spillstab", "AMK", "Spiller AMK i trippel og skade-/pasientavklaringer."],
+    ["Ruben", "Gruppe 1", "Spillstab", "Politi / militær kolonneleder", "Spiller politi og enkel kolonnelederavklaring via politi."],
+]
+
+
 TIMELINE = [
     ["00:00", "B43 OP", "Melder 1", "Nødtelefon: trafikkulykke på E18 Farrisbrua retning Oslo/Sandefjord. Røyk fra personbil, mulig skadde, militært kjøretøy involvert.", "D1", "Motta, posisjonere, vurdere brann/skade/risiko, starte utalarmering og trippelvarsling.", "Første melding skal være grunnlag for tiltak."],
     ["01:10", "B43 / ressurser", "Øvingsledelse", "Forventet tidspunkt: brannressurser varslet eller under utalarmering.", "D1", "Ikke vente på fullstendig informasjon før respons.", "70-110 sekunder brukes som realistisk kvalitetsmål, ikke stoppeklokke-felle."],
@@ -172,7 +187,7 @@ TIMELINE = [
 SPILLCARDS = [
     {
         "rolle": "Første melder",
-        "spiller": "Markør 1",
+        "spiller": "Vibecke",
         "mål": "Starte hendelsen og gi realistisk, ufullstendig, men tilstrekkelig informasjon til tidlig respons.",
         "vet": "Ulykken er på Farrisbrua, retning Oslo/Sandefjord. Personbil med røyk fra motorrom. Militært kjøretøy involvert. Minst en person er skadd/innesperret.",
         "vet_ikke": "Eksakt farlig last, eksakt skadegrad, om det er reell brann eller bare røyk.",
@@ -181,7 +196,7 @@ SPILLCARDS = [
     },
     {
         "rolle": "Andre melder",
-        "spiller": "Markør 2",
+        "spiller": "Benjamin",
         "mål": "Teste kort håndtering av duplikatmelding fra avstand.",
         "vet": "Ser røyk og kø fra avstand.",
         "vet_ikke": "Skadde, brannomfang, eksakt kjøretøytype.",
@@ -190,7 +205,7 @@ SPILLCARDS = [
     },
     {
         "rolle": "Tredje melder",
-        "spiller": "Markør 3",
+        "spiller": "Benjamin",
         "mål": "Teste at totalforsvarsord som 'militær' ikke skaper unødvendig sidespor.",
         "vet": "Ser militære kjøretøy og kø fra avstand.",
         "vet_ikke": "Hva som faktisk har skjedd.",
@@ -199,7 +214,7 @@ SPILLCARDS = [
     },
     {
         "rolle": "AMK",
-        "spiller": "Motspill AMK",
+        "spiller": "Johannes",
         "mål": "Samvirke om skadde, fastklemt/innesperret person og ambulanseressurs.",
         "vet": "Får første info via trippel. Trenger antall skadde, bevissthet, fastklemt og trygg adkomst.",
         "vet_ikke": "Skadegrad før første ressurs/ambulanse er fremme.",
@@ -208,7 +223,7 @@ SPILLCARDS = [
     },
     {
         "rolle": "Politi",
-        "spiller": "Motspill politi",
+        "spiller": "Ruben",
         "mål": "Samvirke om trafikk, sikring og avklaring av militær kolonne som kontekst.",
         "vet": "Trafikkulykke på E18. Militær kolonne kan være involvert. Politiet eier trafikk/sikring.",
         "vet_ikke": "Detaljer om last før kolonneleder er kontaktet.",
@@ -217,7 +232,7 @@ SPILLCARDS = [
     },
     {
         "rolle": "VTS",
-        "spiller": "Motspill VTS",
+        "spiller": "Benjamin",
         "mål": "Støtte trafikkavvikling og fremkommelighet.",
         "vet": "E18 retning Oslo får rask kø. Kan bidra med stenging/varsling og trafikkstatus.",
         "vet_ikke": "Skadegrad og brannomfang.",
@@ -226,7 +241,7 @@ SPILLCARDS = [
     },
     {
         "rolle": "B43-09 / UL",
-        "spiller": "Terminal/markør",
+        "spiller": "Mats",
         "mål": "Gi underveismelding, be om oppdatert info og levere vindusmelding.",
         "vet": "Ressurs er underveis og fremme ca. 22 minutter inn i øvelsen.",
         "vet_ikke": "Full situasjon før fremkomst.",
@@ -235,7 +250,7 @@ SPILLCARDS = [
     },
     {
         "rolle": "IL brann",
-        "spiller": "Terminal/markør",
+        "spiller": "Mats",
         "mål": "Starte driftsfase og be 110 om samlet status.",
         "vet": "Brann/røyk er avgrenset. Trafikk og pasienthåndtering pågår.",
         "vet_ikke": "Alt som er loggført på sentralen.",
@@ -247,8 +262,8 @@ SPILLCARDS = [
 
 REQUIRED = {
     "01_Ovelsesbeskrivelse_B43_Farrisbrua.docx": ["Farrisbrua", "B43", "3 operatører", "1 vaktleder", "Spilløvelse", "Totalforsvar"],
-    "02_Ressursplan_B43_Farrisbrua.docx": ["B43-01", "AMK", "Politi", "VTS", "Militær kolonneleder"],
-    "03_Innringerplan_og_spillkort_B43_Farrisbrua.docx": ["Første melder", "Andre melder", "Tredje melder", "Trippelvarsling"],
+    "02_Ressursplan_B43_Farrisbrua.docx": ["B43-01", "AMK", "Politi", "VTS", "Militær kolonneleder", "Rune", "Siw", "Tom Christian"],
+    "03_Innringerplan_og_spillkort_B43_Farrisbrua.docx": ["Første melder", "Andre melder", "Tredje melder", "Trippelvarsling", "Vibecke", "Benjamin", "Johannes", "Ruben"],
     "04_Dreiebok_B43_Farrisbrua.docx": ["00:00", "22:00", "85:00", "Vindusmelding", "Driftsfase"],
     "05_Sikkerhetsinstruks_B43_Farrisbrua.docx": ["STOPP ØVELSE B43", "reell hendelse", "telefonbruk", "radiobruk"],
     "06_Evalueringsopplegg_ODCR_AAR_B43_Farrisbrua.docx": ["ODCR", "AAR", "Hva forventet vi", "rollefordeling", "situasjonsforståelse"],
@@ -542,7 +557,13 @@ def build_ressursplan():
     add_table(doc, ["Rolle", "Status", "Primæroppgave"], RESOURCES[:4])
     doc.add_heading("2. Motspill og spilte ressurser", level=1)
     add_table(doc, ["Ressurs/rolle", "Type", "Funksjon i øvelsen"], RESOURCES[4:])
-    doc.add_heading("3. Kanaler og praktisk bruk", level=1)
+    doc.add_heading("3. Personfordeling for gruppe 3 og spillstab", level=1)
+    doc.add_paragraph(
+        "Gruppe 3 eier øvelsen. To fra gruppe 3 sitter i kontrollrommet som observatører, "
+        "og to fra gruppe 3 inngår i spillstab. Gruppe 1 støtter med innringere og motspill."
+    )
+    add_table(doc, ["Person", "Gruppe", "Plassering", "Rolle", "Primæransvar"], ROLE_ALLOCATION)
+    doc.add_heading("4. Kanaler og praktisk bruk", level=1)
     add_table(doc, ["Kanal", "Bruk", "Merknad"], [
         ["Nødtelefon", "Tre innringere i initialfasen", "Innringer 1 skal trippelvarsles; innringer 2 og 3 avsluttes kort."],
         ["ICCS/trippel", "AMK og politi", "Brukes som tilgjengelig i kontrollrommet."],
@@ -550,7 +571,7 @@ def build_ressursplan():
         ["Terminal/Nødnett", "01/09, UL og IL", "Markør spiller meldinger etter dreiebok."],
         ["Bilder", "Situasjonsforståelse", "Gis i henhold til bildekort, ikke samlet ved start."],
     ])
-    doc.add_heading("4. Ressursutvikling i spillet", level=1)
+    doc.add_heading("5. Ressursutvikling i spillet", level=1)
     add_table(doc, ["Tid", "Ressurs", "Status", "Forventet 110-oppgave"], [
         ["00:00-02:00", "B43-01/B43-09", "Utalarmeres", "Rask respons på første melding."],
         ["08:00-15:00", "B43-01/B43-09", "Underveis", "Oppdatere ressurser med posisjon, skadde, røyk/brann og trafikk."],
@@ -558,7 +579,7 @@ def build_ressursplan():
         ["35:00", "IL brann", "Fremme/driftsfase", "Gi samlet status og avklare videre oppfølging."],
         ["45:00-75:00", "VTS/politi/AMK/IL", "Driftsfase", "Korte statusoppdateringer og avklaringer."],
     ])
-    doc.add_heading("5. Foreslått rollefordeling for vaktlaget", level=1)
+    doc.add_heading("6. Foreslått rollefordeling for vaktlaget", level=1)
     doc.add_paragraph("Dette er ikke en fasit, men en forventet god struktur observatørene kan se etter.")
     add_table(doc, ["Funksjon", "Primærrolle", "Sekundærrolle"], [
         ["Meldingsmottak", "OP 1", "OP 3 kan støtte/logge."],
@@ -572,12 +593,13 @@ def build_ressursplan():
 def build_innringer_spillkort(images):
     doc = base_doc("Innringerplan og spillkort", SCENARIO["subtitle"])
     doc.add_heading("1. Innringerplan", level=1)
-    add_table(doc, ["Nr.", "Tid", "Rolle", "Kanal", "Hovedfunksjon"], [
-        [c["nr"], c["tid"], c["rolle"], c["kanal"], c["forventet"]] for c in CALLERS
+    add_table(doc, ["Nr.", "Tid", "Spilles av", "Rolle", "Kanal", "Hovedfunksjon"], [
+        [c["nr"], c["tid"], c["spilles_av"], c["rolle"], c["kanal"], c["forventet"]] for c in CALLERS
     ])
     for c in CALLERS:
         doc.add_heading(f"Innringer {c['nr']}: {c['navn']}", level=2)
         add_table(doc, ["Felt", "Innhold"], [
+            ["Spilles av", c["spilles_av"]],
             ["Rolle", c["rolle"]],
             ["Tidspunkt", c["tid"]],
             ["Uttrykk", c["uttrykk"]],
